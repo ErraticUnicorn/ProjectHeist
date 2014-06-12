@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
+using Heist.Screens;
 #endregion
 
 namespace Heist
@@ -18,6 +19,8 @@ namespace Heist
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        Screen s;
 
         public Game1()
             : base()
@@ -35,6 +38,8 @@ namespace Heist
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+
+            s = new TestScreen(3,3, Content.Load<Texture2D>("red"));
 
             base.Initialize();
         }
@@ -71,6 +76,7 @@ namespace Heist
                 Exit();
 
             // TODO: Add your update logic here
+            s.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -84,7 +90,7 @@ namespace Heist
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-
+            s.Draw(gameTime, spriteBatch);
             base.Draw(gameTime);
         }
     }
