@@ -27,6 +27,7 @@ namespace Heist
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            this.IsMouseVisible = true;
         }
 
         /// <summary>
@@ -39,7 +40,7 @@ namespace Heist
         {
             // TODO: Add your initialization logic here
 
-            s = new TestScreen(3,3, Content.Load<Texture2D>("red"));
+            s = new TestScreen(3, 3, Content.Load<Texture2D>("red"), Content.Load<Texture2D>("blue"));
 
             base.Initialize();
         }
