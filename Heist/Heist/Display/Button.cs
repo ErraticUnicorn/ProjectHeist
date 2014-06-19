@@ -44,7 +44,8 @@ namespace Heist.Display
 
         private Texture2D tex
         {
-            get {
+            get 
+            {
                 return pressed ? down : up;
             }
         }
