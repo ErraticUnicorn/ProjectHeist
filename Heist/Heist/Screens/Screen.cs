@@ -7,18 +7,30 @@ using System.Text;
 
 namespace Heist.Screens
 {
-    abstract class Screen
+    public abstract class Screen
     {
+        private IScreenMaster c;
         protected int widthScreen, heightScreen;
 
-        public Screen(int widthScreen_, int heightScreen_)
+        public Screen(int widthScreen_, int heightScreen_, IScreenMaster c_)
         {
             widthScreen = widthScreen_;
             heightScreen = heightScreen_;
+            c = c_;
         }
 
         public abstract void Update(GameTime gameTime);
 
         public abstract void Draw(GameTime gameTime, SpriteBatch batch);
+
+        protected C Load<C>(string name)
+        {
+            return c.Load<C>(name);
+        }
+
+        protected void ChangeScreen<S>() where S : Screen
+        {
+            c.Change<S>();
+        }
     }
 }

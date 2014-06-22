@@ -15,8 +15,10 @@ namespace Heist
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class Game1 : Game
+    public class Game1 : Game, IScreenMaster
     {
+        int widthScreen, heightScreen;
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -39,8 +41,9 @@ namespace Heist
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
-            s = new TestScreen(3, 3, Content.Load<Texture2D>("Image/red"), Content.Load<Texture2D>("Image/blue"), Content.Load<SpriteFont>("Font/text"));
+            widthScreen = this.Window.ClientBounds.Width;
+            widthScreen = this.Window.ClientBounds.Height;
+            Change<TestScreen>();
 
             base.Initialize();
         }
@@ -93,6 +96,16 @@ namespace Heist
             // TODO: Add your drawing code here
             s.Draw(gameTime, spriteBatch);
             base.Draw(gameTime);
+        }
+
+        public C Load<C>(string name)
+        {
+            return Content.Load<C>(name);
+        }
+
+        public void Change<S>() where S : Screen
+        {
+            s = (Screen) typeof(S).GetConstructor(new[]{typeof(int), typeof(int), typeof(IScreenMaster)}).Invoke(new object[]{widthScreen, heightScreen, this});
         }
     }
 }

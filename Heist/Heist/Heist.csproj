@@ -41,8 +41,10 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Screens\IScreenMaster.cs" />
     <Compile Include="Screens\Screen.cs" />
     <Compile Include="Screens\TestScreen.cs" />
+    <Compile Include="Screens\TestScreenTwo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">

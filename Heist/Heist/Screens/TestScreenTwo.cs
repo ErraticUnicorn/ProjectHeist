@@ -9,14 +9,14 @@ using System.Text;
 
 namespace Heist.Screens
 {
-    class TestScreen : Screen
+    class TestScreenTwo : Screen
     {
         private Button tex;
 
-        public TestScreen(int widthScreen, int heightScreen, IScreenMaster c)
+        public TestScreenTwo(int widthScreen, int heightScreen, IScreenMaster c)
             : base(widthScreen, heightScreen, c)
         {
-            tex = new TextButton(100, 100, Load<Texture2D>("Image/red"), Load<Texture2D>("Image/blue"), Load<SpriteFont>("Font/text"), "Love");
+            tex = new TextButton(100, 100, Load<Texture2D>("Image/red"), Load<Texture2D>("Image/blue"), Load<SpriteFont>("Font/text"), "Hate");
             tex.select += Select;
 
         }
@@ -42,7 +42,7 @@ namespace Heist.Screens
         }
         private void Select()
         {
-            ChangeScreen<TestScreenTwo>();
+            ChangeScreen<TestScreen>();
         }
     }
 }
