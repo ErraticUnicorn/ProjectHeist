@@ -40,7 +40,7 @@ namespace Heist
         {
             // TODO: Add your initialization logic here
 
-            s = new TestScreen(3, 3, Content.Load<Texture2D>("red"), Content.Load<Texture2D>("blue"));
+            s = new TestScreen(3, 3, Content.Load<Texture2D>("Image/red"), Content.Load<Texture2D>("Image/blue"), Content.Load<SpriteFont>("Font/text"));
 
             base.Initialize();
         }

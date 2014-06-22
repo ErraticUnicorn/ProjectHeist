@@ -13,10 +13,10 @@ namespace Heist.Screens
     {
         private Button tex;
 
-        public TestScreen(int widthScreen, int heightScreen, Texture2D up, Texture2D down)
+        public TestScreen(int widthScreen, int heightScreen, Texture2D up, Texture2D down, SpriteFont font)
             : base(widthScreen, heightScreen)
         {
-            tex = new Button(100, 100, up, down);
+            tex = new TextButton(100, 100, up, down, font, "Love");
             tex.select += Select;
 
         }

@@ -42,7 +42,7 @@ namespace Heist.Display
             pressed = pressed_;
         }
 
-        private Texture2D tex
+        protected Texture2D tex
         {
             get 
             {
