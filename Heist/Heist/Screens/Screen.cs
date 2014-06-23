@@ -12,7 +12,7 @@ namespace Heist.Screens
         private IScreenMaster c;
         protected int widthScreen, heightScreen;
 
-        public Screen(int widthScreen_, int heightScreen_, IScreenMaster c_)
+        public Screen(int widthScreen_, int heightScreen_, IScreenMaster c_, object[] data)
         {
             widthScreen = widthScreen_;
             heightScreen = heightScreen_;
@@ -28,9 +28,9 @@ namespace Heist.Screens
             return c.Load<C>(name);
         }
 
-        protected void ChangeScreen<S>() where S : Screen
+        protected void ChangeScreen<S>(object[] data = null) where S : Screen
         {
-            c.Change<S>();
+            c.Change<S>(data);
         }
     }
 }

@@ -9,29 +9,24 @@ using System.Text;
 
 namespace Heist.Screens
 {
-    class MainMenuScreen : Screen
+    class OptionScreen : Screen
     {
         private Image title;
-        private TextButton newGame, loadGame, options;
+        private TextButton back;
 
-        public MainMenuScreen(int widthScreen, int heightScreen, IScreenMaster master, object[] data) : base(widthScreen, heightScreen, master, data)
+        public OptionScreen(int widthScreen, int heightScreen, IScreenMaster master, object[] data)
+            : base(widthScreen, heightScreen, master, data)
         {
             Texture2D up = Load<Texture2D>("Image/red");
             Texture2D down = Load<Texture2D>("Image/blue");
             SpriteFont font = Load<SpriteFont>("Font/text");
 
             int centerX = widthScreen / 2 - up.Width / 2;
-            int buttonStartY = heightScreen / 3;
-            int buttonSpacing = 10;
 
             title = new Image(centerX, 10, up);
-            newGame = new TextButton(centerX, buttonStartY, up, down, font, "New Game");
-            loadGame = new TextButton(centerX, buttonStartY + up.Height + buttonSpacing, up, down, font, "Load Game");
-            options = new TextButton(centerX, buttonStartY + 2 * (up.Height + buttonSpacing), up, down, font, "Options");
+            back = new TextButton(centerX, heightScreen - up.Height - 10, up, down, font, "Back");
 
-            newGame.select += delegate() { ChangeScreen<StoryScreen>(); };
-            loadGame.select += delegate() { ChangeScreen<LoadGameScreen>(); };
-            options.select += delegate() { ChangeScreen<OptionScreen>(); };
+            back.select += delegate() { ChangeScreen<MainMenuScreen>(); };
         }
 
         private void UpdateButton(Button button)
@@ -51,18 +46,14 @@ namespace Heist.Screens
 
         public override void Update(GameTime gameTime)
         {
-            UpdateButton(newGame);
-            UpdateButton(loadGame);
-            UpdateButton(options); 
+            UpdateButton(back);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch batch)
         {
             batch.Begin();
             title.Draw(batch);
-            newGame.Draw(batch);
-            loadGame.Draw(batch);
-            options.Draw(batch);
+            back.Draw(batch);
             batch.End();
         }
     }

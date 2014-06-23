@@ -8,6 +8,6 @@ namespace Heist.Screens
     public interface IScreenMaster
     {
         C Load<C>(string name);
-        void Change<S>() where S : Screen;
+        void Change<S>(object[] data) where S : Screen;
     }
 }
