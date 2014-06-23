@@ -41,9 +41,10 @@ namespace Heist
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            widthScreen = this.Window.ClientBounds.Width;
-            widthScreen = this.Window.ClientBounds.Height;
-            Change<TestScreen>();
+            widthScreen = this.GraphicsDevice.Viewport.Width;
+            heightScreen = this.GraphicsDevice.Viewport.Height;
+
+            Change<MainMenuScreen>();
 
             base.Initialize();
         }
