@@ -12,7 +12,7 @@ namespace Heist.Screens
         private IScreenMaster c;
         protected int widthScreen, heightScreen;
 
-        public Screen(int widthScreen_, int heightScreen_, IScreenMaster c_, object[] data)
+        public Screen(int widthScreen_, int heightScreen_, IScreenMaster c_)
         {
             widthScreen = widthScreen_;
             heightScreen = heightScreen_;

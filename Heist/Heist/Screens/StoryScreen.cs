@@ -14,7 +14,7 @@ namespace Heist.Screens
         TextButton cont;
 
         public StoryScreen(int widthScreen, int heightScreen, IScreenMaster master, object[] data)
-            : base(widthScreen, heightScreen, master, data)
+            : base(widthScreen, heightScreen, master)
         {
             Texture2D up = Load<Texture2D>("Image/red");
             Texture2D down = Load<Texture2D>("Image/blue");
@@ -23,7 +23,7 @@ namespace Heist.Screens
             int centerX = widthScreen / 2 - up.Width / 2;
             int centerY = heightScreen / 2 - up.Height / 2;
 
-            cont = new TextButton(centerX, centerY, up, down, font, "Continue");
+            cont = new TextButton(centerX, centerY, up, down, font, "Continue to PreGame");
 
             cont.select += delegate() { ChangeScreen<PreGameScreen>(); };
         }

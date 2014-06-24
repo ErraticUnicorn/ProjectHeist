@@ -11,10 +11,10 @@ namespace Heist.Screens
 {
     class InGameScreen : Screen
     {
-        TextButton cont;
+        TextButton pause;
 
         public InGameScreen(int widthScreen, int heightScreen, IScreenMaster master, object[] data)
-            : base(widthScreen, heightScreen, master, data)
+            : base(widthScreen, heightScreen, master)
         {
             Texture2D up = Load<Texture2D>("Image/red");
             Texture2D down = Load<Texture2D>("Image/blue");
@@ -23,22 +23,22 @@ namespace Heist.Screens
             int centerX = widthScreen / 2 - up.Width / 2;
             int centerY = heightScreen / 2 - up.Height / 2;
 
-            cont = new TextButton(centerX, centerY, up, down, font, "Continue");
+            pause = new TextButton(centerX, centerY, up, down, font, "Pause");
 
-            cont.select += delegate() { ChangeScreen<StoryScreen>(); };
+            pause.select += delegate() { ChangeScreen<PauseScreen>(); };
         }
 
         public override void Update(GameTime gameTime)
         {
-            if (cont.Collide(Mouse.GetState().Position.X, Mouse.GetState().Position.Y))
+            if (pause.Collide(Mouse.GetState().Position.X, Mouse.GetState().Position.Y))
             {
                 if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                 {
-                    cont.SetPressed(true);
+                    pause.SetPressed(true);
                 }
                 else
                 {
-                    cont.SetPressed(false);
+                    pause.SetPressed(false);
                 }
             }
         }
@@ -46,7 +46,7 @@ namespace Heist.Screens
         public override void Draw(GameTime gameTime, SpriteBatch batch)
         {
             batch.Begin();
-            cont.Draw(batch);
+            pause.Draw(batch);
             batch.End();
         }
     }

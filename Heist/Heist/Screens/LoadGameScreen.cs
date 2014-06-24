@@ -9,12 +9,9 @@ using System.Text;
 
 namespace Heist.Screens
 {
-    class LoadGameScreen : Screen
+    class LoadGameScreen : MenuScreen
     {
-        private Image title;
-        private TextButton back;
-
-        public LoadGameScreen(int widthScreen, int heightScreen, IScreenMaster master, object[] data) : base(widthScreen, heightScreen, master, data)
+        public LoadGameScreen(int widthScreen, int heightScreen, IScreenMaster master, object[] data) : base(widthScreen, heightScreen, master)
         {
             Texture2D up = Load<Texture2D>("Image/red");
             Texture2D down = Load<Texture2D>("Image/blue");
@@ -23,37 +20,11 @@ namespace Heist.Screens
             int centerX = widthScreen / 2 - up.Width / 2;
 
             title = new Image(centerX, 10, up);
-            back = new TextButton(centerX, heightScreen - up.Height - 10, up, down, font, "Back");
+            Button back = new TextButton(centerX, heightScreen - up.Height - 10, up, down, font, "Back");
 
             back.select += delegate() { ChangeScreen<MainMenuScreen>(); };
-        }
 
-        private void UpdateButton(Button button)
-        {
-            if (button.Collide(Mouse.GetState().Position.X, Mouse.GetState().Position.Y))
-            {
-                if (Mouse.GetState().LeftButton == ButtonState.Pressed)
-                {
-                    button.SetPressed(true);
-                }
-                else
-                {
-                    button.SetPressed(false);
-                }
-            }
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-            UpdateButton(back);
-        }
-
-        public override void Draw(GameTime gameTime, SpriteBatch batch)
-        {
-            batch.Begin();
-            title.Draw(batch);
-            back.Draw(batch);
-            batch.End();
+            buttons.Add(back);
         }
     }
 }

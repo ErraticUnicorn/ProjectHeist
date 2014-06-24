@@ -46,7 +46,9 @@
     <Compile Include="Screens\IScreenMaster.cs" />
     <Compile Include="Screens\LoadGameScreen.cs" />
     <Compile Include="Screens\MainMenuScreen.cs" />
+    <Compile Include="Screens\MenuScreen.cs" />
     <Compile Include="Screens\OptionScreen.cs" />
+    <Compile Include="Screens\PauseScreen.cs" />
     <Compile Include="Screens\PreGameScreen.cs" />
     <Compile Include="Screens\Screen.cs" />
     <Compile Include="Screens\StoryScreen.cs" />
