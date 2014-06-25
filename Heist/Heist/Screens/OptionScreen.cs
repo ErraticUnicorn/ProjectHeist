@@ -11,7 +11,7 @@ namespace Heist.Screens
 {
     class OptionScreen : MenuScreen
     {
-        public OptionScreen(int widthScreen, int heightScreen, IScreenMaster master, object[] data)
+        public OptionScreen(int widthScreen, int heightScreen, IScreenMaster master)
             : base(widthScreen, heightScreen, master)
         {
             Texture2D up = Load<Texture2D>("Image/red");

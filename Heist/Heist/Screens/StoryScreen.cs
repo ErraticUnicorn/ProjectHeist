@@ -15,7 +15,7 @@ namespace Heist.Screens
 
         TextButton cont;
 
-        public StoryScreen(int widthScreen, int heightScreen, IScreenMaster master, object[] data)
+        public StoryScreen(int widthScreen, int heightScreen, IScreenMaster master)
             : base(widthScreen, heightScreen, master)
         {
             LevelLoader lvl = LevelLoader.GetCurrentLoader();
@@ -29,7 +29,7 @@ namespace Heist.Screens
 
             cont = new TextButton(centerX, centerY, up, down, font, "Continue to PreGame (Level " + lvl.GetId() + ")");
 
-            cont.select += delegate() { ChangeScreen<PreGameScreen>(new object[] {lvl}); };
+            cont.select += delegate() { ChangeScreen<PreGameScreen>(); };
         }
 
         public override void Update(GameTime gameTime)

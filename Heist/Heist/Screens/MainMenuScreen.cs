@@ -12,7 +12,7 @@ namespace Heist.Screens
 {
     class MainMenuScreen : MenuScreen
     {
-        public MainMenuScreen(int widthScreen, int heightScreen, IScreenMaster master, object[] data) : base(widthScreen, heightScreen, master)
+        public MainMenuScreen(int widthScreen, int heightScreen, IScreenMaster master) : base(widthScreen, heightScreen, master)
         {
             Texture2D up = Load<Texture2D>("Image/red");
             Texture2D down = Load<Texture2D>("Image/blue");

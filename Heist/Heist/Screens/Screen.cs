@@ -28,9 +28,9 @@ namespace Heist.Screens
             return c.Load<C>(name);
         }
 
-        protected void ChangeScreen<S>(object[] data = null) where S : Screen
+        protected void ChangeScreen<S>() where S : Screen
         {
-            c.Change<S>(data);
+            c.Change<S>();
         }
     }
 }

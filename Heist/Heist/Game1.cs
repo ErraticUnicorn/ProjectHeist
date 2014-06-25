@@ -104,9 +104,9 @@ namespace Heist
             return Content.Load<C>(name);
         }
 
-        public void Change<S>(object[] data = null) where S : Screen
+        public void Change<S>() where S : Screen
         {
-            s = (Screen) typeof(S).GetConstructor(new[]{typeof(int), typeof(int), typeof(IScreenMaster), typeof(object[])}).Invoke(new object[]{widthScreen, heightScreen, this, data});
+            s = (Screen) typeof(S).GetConstructor(new[]{typeof(int), typeof(int), typeof(IScreenMaster)}).Invoke(new object[]{widthScreen, heightScreen, this});
         }
     }
 }

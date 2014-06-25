@@ -15,7 +15,7 @@ namespace Heist.Screens
         TextButton win;
         TextButton pause;
 
-        public InGameScreen(int widthScreen, int heightScreen, IScreenMaster master, object[] data)
+        public InGameScreen(int widthScreen, int heightScreen, IScreenMaster master)
             : base(widthScreen, heightScreen, master)
         {
             LevelLoader lvl = LevelLoader.GetCurrentLoader();
