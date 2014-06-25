@@ -1,4 +1,5 @@
 ﻿using Heist.Display;
+using Heist.GameLogic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -11,11 +12,14 @@ namespace Heist.Screens
 {
     class StoryScreen : Screen
     {
+
         TextButton cont;
 
         public StoryScreen(int widthScreen, int heightScreen, IScreenMaster master, object[] data)
             : base(widthScreen, heightScreen, master)
         {
+            LevelLoader lvl = (LevelLoader) data[0];
+
             Texture2D up = Load<Texture2D>("Image/red");
             Texture2D down = Load<Texture2D>("Image/blue");
             SpriteFont font = Load<SpriteFont>("Font/text");
@@ -23,9 +27,9 @@ namespace Heist.Screens
             int centerX = widthScreen / 2 - up.Width / 2;
             int centerY = heightScreen / 2 - up.Height / 2;
 
-            cont = new TextButton(centerX, centerY, up, down, font, "Continue to PreGame");
+            cont = new TextButton(centerX, centerY, up, down, font, "Continue to PreGame (Level " + lvl.getId() + ")");
 
-            cont.select += delegate() { ChangeScreen<PreGameScreen>(); };
+            cont.select += delegate() { ChangeScreen<PreGameScreen>(new object[] {lvl}); };
         }
 
         public override void Update(GameTime gameTime)

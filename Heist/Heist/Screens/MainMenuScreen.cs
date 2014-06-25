@@ -1,4 +1,5 @@
 ﻿using Heist.Display;
+using Heist.GameLogic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -26,7 +27,7 @@ namespace Heist.Screens
             Button loadGame = new TextButton(centerX, buttonStartY + up.Height + buttonSpacing, up, down, font, "Load Game");
             Button options = new TextButton(centerX, buttonStartY + 2 * (up.Height + buttonSpacing), up, down, font, "Options");
 
-            newGame.select += delegate() { ChangeScreen<StoryScreen>(); };
+            newGame.select += delegate() { ChangeScreen<StoryScreen>(new object[] {new LevelLoader(1)}); };
             loadGame.select += delegate() { ChangeScreen<LoadGameScreen>(); };
             options.select += delegate() { ChangeScreen<OptionScreen>(); };
 

@@ -40,6 +40,7 @@
     <Compile Include="Display\TextButton.cs" />
     <Compile Include="Display\UiElement.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="GameLogic\LevelLoader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screens\InGameScreen.cs" />
@@ -48,7 +49,6 @@
     <Compile Include="Screens\MainMenuScreen.cs" />
     <Compile Include="Screens\MenuScreen.cs" />
     <Compile Include="Screens\OptionScreen.cs" />
-    <Compile Include="Screens\PauseScreen.cs" />
     <Compile Include="Screens\PreGameScreen.cs" />
     <Compile Include="Screens\Screen.cs" />
     <Compile Include="Screens\StoryScreen.cs" />
