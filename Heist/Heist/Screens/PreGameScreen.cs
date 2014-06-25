@@ -17,7 +17,7 @@ namespace Heist.Screens
         public PreGameScreen(int widthScreen, int heightScreen, IScreenMaster master, object[] data)
             : base(widthScreen, heightScreen, master)
         {
-            LevelLoader lvl = (LevelLoader)data[0];
+            LevelLoader lvl = LevelLoader.GetCurrentLoader();
 
             Texture2D up = Load<Texture2D>("Image/red");
             Texture2D down = Load<Texture2D>("Image/blue");
@@ -26,7 +26,7 @@ namespace Heist.Screens
             int centerX = widthScreen / 2 - up.Width / 2;
             int centerY = heightScreen / 2 - up.Height / 2;
 
-            cont = new TextButton(centerX, centerY, up, down, font, "Continue to InGame (Level " + lvl.getId() + ")");
+            cont = new TextButton(centerX, centerY, up, down, font, "Continue to InGame (Level " + lvl.GetId() + ")");
 
             cont.select += delegate() { ChangeScreen<InGameScreen>(new object[] {lvl}); };
         }
