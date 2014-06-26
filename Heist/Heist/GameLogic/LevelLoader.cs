@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -40,6 +41,11 @@ namespace Heist.GameLogic
         public int GetId()
         {
             return id;
+        }
+
+        public Level CreateLevel(Texture2D tex)
+        {
+            return new Level(tex);
         }
     }
 }

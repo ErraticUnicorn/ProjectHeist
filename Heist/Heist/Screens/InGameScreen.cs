@@ -12,13 +12,16 @@ namespace Heist.Screens
 {
     class InGameScreen : Screen
     {
+        Level lvl;
+
         TextButton win;
         TextButton pause;
 
         public InGameScreen(int widthScreen, int heightScreen, IScreenMaster master)
             : base(widthScreen, heightScreen, master)
         {
-            LevelLoader lvl = LevelLoader.GetCurrentLoader();
+            LevelLoader load = LevelLoader.GetCurrentLoader();
+            lvl = load.CreateLevel(Load<Texture2D>("Image/red"));
 
             Texture2D up = Load<Texture2D>("Image/red");
             Texture2D down = Load<Texture2D>("Image/blue");
@@ -26,12 +29,12 @@ namespace Heist.Screens
 
             int centerX = widthScreen / 2 - up.Width / 2;
             int centerY = heightScreen / 2 - up.Height / 2;
-            int spacing = 100;
+            int spacing = 50;
 
             win = new TextButton(centerX, centerY - spacing, up, down, font, "Next Level");
             pause = new TextButton(centerX, centerY + spacing, up, down, font, "Exit");
 
-            win.select += delegate() { LevelLoader.Load(lvl.GetId() + 1); ChangeScreen<StoryScreen>(); };
+            win.select += delegate() { LevelLoader.Load(load.GetId() + 1); ChangeScreen<StoryScreen>(); };
             pause.select += delegate() { ChangeScreen<MainMenuScreen>(); };
         }
 
@@ -59,6 +62,8 @@ namespace Heist.Screens
                     pause.SetPressed(false);
                 }
             }
+
+            lvl.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch batch)
@@ -67,6 +72,8 @@ namespace Heist.Screens
             win.Draw(batch);
             pause.Draw(batch);
             batch.End();
+
+            lvl.Draw(gameTime, batch);
         }
     }
 }
