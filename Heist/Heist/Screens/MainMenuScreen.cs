@@ -22,7 +22,10 @@ namespace Heist.Screens
             int buttonStartY = heightScreen / 3;
             int buttonSpacing = 10;
 
-            title = new Image(centerX, 10, up);
+            Label t = new Label(widthScreen / 2, 10, font, "Project: Height");
+            t.x -= (int)t.GetDim().X / 2;
+            title = t;
+
             Button newGame = new TextButton(centerX, buttonStartY, up, down, font, "New Game");
             Button loadGame = new TextButton(centerX, buttonStartY + up.Height + buttonSpacing, up, down, font, "Load Game");
             Button options = new TextButton(centerX, buttonStartY + 2 * (up.Height + buttonSpacing), up, down, font, "Options");

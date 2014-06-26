@@ -12,7 +12,6 @@ namespace Heist.Screens
 {
     class StoryScreen : Screen
     {
-
         TextButton cont;
 
         public StoryScreen(int widthScreen, int heightScreen, IScreenMaster master)

@@ -11,7 +11,7 @@ namespace Heist.Screens
 {
     abstract class MenuScreen : Screen
     {
-        protected Image title;
+        protected UiElement title;
         protected List<Button> buttons;
 
         public MenuScreen(int widthScreen, int heightScreen, IScreenMaster master)

@@ -20,7 +20,10 @@ namespace Heist.Screens
 
             int centerX = widthScreen / 2 - up.Width / 2;
 
-            title = new Image(centerX, 10, up);
+            Label t = new Label(widthScreen / 2, 10, font, "Options");
+            t.x -= (int) t.GetDim().X / 2;
+            title = t;
+
             Button back = new TextButton(centerX, heightScreen - up.Height - 10, up, down, font, "Back");
 
             back.select += delegate() { ChangeScreen<MainMenuScreen>(); };

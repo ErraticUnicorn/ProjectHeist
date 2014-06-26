@@ -19,11 +19,20 @@ namespace Heist.Display
             text = text_;
         }
 
+        public Vector2 GetDim()
+        {
+            return font.MeasureString(text);
+        }
+
         public override void Draw(SpriteBatch batch)
         {
-            Vector2 dim = font.MeasureString(text);
-
             batch.DrawString(font, text, new Vector2(x, y), Color.White);
+        }
+
+        public override bool Collide(int pointX, int pointY)
+        {
+            Vector2 dim = font.MeasureString(text);
+            return pointX > x && pointX < (x + dim.X) && pointY > y && pointY < (y + dim.Y);
         }
     }
 }
