@@ -23,8 +23,8 @@ namespace Heist.Screens
             LevelLoader load = LevelLoader.GetCurrentLoader();
             lvl = load.CreateLevel(Load<Texture2D>("Image/red"));
 
-            Texture2D up = Load<Texture2D>("Image/red");
-            Texture2D down = Load<Texture2D>("Image/blue");
+            Texture2D up = Load<Texture2D>("Image/buttonUp");
+            Texture2D down = Load<Texture2D>("Image/buttonDown");
             SpriteFont font = Load<SpriteFont>("Font/text");
 
             int centerX = widthScreen / 2 - up.Width / 2;

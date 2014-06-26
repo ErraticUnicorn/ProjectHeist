@@ -14,8 +14,8 @@ namespace Heist.Screens
     {
         public MainMenuScreen(int widthScreen, int heightScreen, IScreenMaster master) : base(widthScreen, heightScreen, master)
         {
-            Texture2D up = Load<Texture2D>("Image/red");
-            Texture2D down = Load<Texture2D>("Image/blue");
+            Texture2D up = Load<Texture2D>("Image/buttonUp");
+            Texture2D down = Load<Texture2D>("Image/buttonDown");
             SpriteFont font = Load<SpriteFont>("Font/text");
 
             int centerX = widthScreen / 2 - up.Width / 2;
