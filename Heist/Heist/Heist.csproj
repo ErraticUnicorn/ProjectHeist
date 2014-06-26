@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="Display\Button.cs" />
     <Compile Include="Display\Image.cs" />
+    <Compile Include="Display\Label.cs" />
     <Compile Include="Display\TextButton.cs" />
     <Compile Include="Display\UiElement.cs" />
     <Compile Include="Game1.cs" />
