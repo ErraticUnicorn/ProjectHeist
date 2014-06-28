@@ -1,4 +1,5 @@
-﻿using Heist.GameLogic.Model;
+﻿using Heist.GameLogic.Input;
+using Heist.GameLogic.Model;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -8,7 +9,7 @@ using System.Text;
 
 namespace Heist.GameLogic.View
 {
-    class Renderer
+    class Renderer : EventListener
     {
         ViewDB db;
 
@@ -23,6 +24,11 @@ namespace Heist.GameLogic.View
             batch.Begin();
             batch.Draw(tex, new Rectangle(state.test.X, state.test.Y, tex.Width, tex.Height), Color.White);
             batch.End();
+        }
+
+        public void OnEvent(Event e)
+        {
+
         }
     }
 }

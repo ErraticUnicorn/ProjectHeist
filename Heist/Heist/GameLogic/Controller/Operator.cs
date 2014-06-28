@@ -1,4 +1,5 @@
-﻿using Heist.GameLogic.Model;
+﻿using Heist.GameLogic.Input;
+using Heist.GameLogic.Model;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace Heist.GameLogic.Controller
 {
-    class Operator
+    class Operator : EventListener
     {
         int time;
 
@@ -25,6 +26,11 @@ namespace Heist.GameLogic.Controller
                 Random rand = new Random();
                 state.test = new Point(rand.Next(100, 200), rand.Next(100, 200));
             }
+        }
+
+        public void OnEvent(Event e)
+        {
+
         }
     }
 }
