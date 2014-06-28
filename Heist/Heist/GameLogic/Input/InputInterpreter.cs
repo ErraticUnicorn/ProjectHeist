@@ -9,30 +9,104 @@ namespace Heist.GameLogic.Input
 {
     class InputInterpreter
     {
+        private HashSet<Keys> pressedKeys;
+        private bool left, middle, right;
+        private int scroll, scrollDelta;
+
         public InputInterpreter()
         {
+            pressedKeys = new HashSet<Keys>();
         }
 
-        public Event Process()
+        private InputType InputFromKey(Keys k, bool up)
         {
-            Event res = null;
-            if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+            return KeyboardMapper.InputFromKey(k, up);
+        }
+
+        private void MouseEvents(List<InputType> events)
+        {
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed && !left)
             {
-                res = new Event(EventType.Action, new Point(0, 0));
+                left = true;
+                events.Add(InputType.MouseLeft_Down);
             }
-            else if (Mouse.GetState().MiddleButton == ButtonState.Pressed)
+            else if (left)
             {
-                res = new Event(EventType.Pan, new Point(0, 0));
+                left = false;
+                events.Add(InputType.MouseLeft_Down);
             }
-            else if (Mouse.GetState().RightButton == ButtonState.Pressed)
+
+            if (Mouse.GetState().MiddleButton == ButtonState.Pressed && !middle)
             {
-                res = new Event(EventType.Pause, new Point(0, 0));
+                middle = true;
+                events.Add(InputType.MouseMiddle_Down);
             }
-            else if (Mouse.GetState().ScrollWheelValue == 1)
+            else if (middle)
             {
-                res = new Event(EventType.Zoom, new Point(0, 0));
+                middle = false;
+                events.Add(InputType.MouseMiddle_Down);
             }
+
+            if (Mouse.GetState().RightButton == ButtonState.Pressed && !right)
+            {
+                right = true;
+                events.Add(InputType.MouseRight_Down);
+            }
+            else if (right)
+            {
+                right = false;
+                events.Add(InputType.MouseRight_Down);
+            }
+
+            scrollDelta = scroll - Mouse.GetState().ScrollWheelValue;
+            scroll = Mouse.GetState().ScrollWheelValue;
+
+            if (scrollDelta < 0)
+            {
+                events.Add(InputType.MouseScroll_Down);
+            }
+            else if(scrollDelta > 0)
+            {
+                events.Add(InputType.MouseScroll_Up);
+            }
+        }
+
+        private void KeyEvents(List<InputType> events)
+        {
+            Keys[] newKeys = Keyboard.GetState().GetPressedKeys();
+            foreach (Keys k in pressedKeys.Union(newKeys))
+            {
+                if (!pressedKeys.Contains(k))
+                {
+                    events.Add(InputFromKey(k, true));
+                }
+                else if (!newKeys.Contains(k))
+                {
+                    events.Add(InputFromKey(k, false));
+                }
+            }
+
+            pressedKeys.Clear();
+            pressedKeys.UnionWith(newKeys);
+        }
+
+        public List<InputType> Process()
+        {
+            List<InputType> res = new List<InputType>();
+            MouseEvents(res);
+            KeyEvents(res);
+
             return res;
+        }
+
+        public Point GetLocation()
+        {
+            return Mouse.GetState().Position;
+        }
+
+        public int GetScrollAmount()
+        {
+            return scrollDelta;
         }
     }
 }

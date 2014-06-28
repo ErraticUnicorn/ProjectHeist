@@ -8,11 +8,15 @@ namespace Heist.GameLogic.Input
 
     class EventDispatcher
     {
+        Dictionary<InputType, EventType> inputMap;
+
         InputInterpreter input;
         Dictionary<EventListener, EventType> listeners;
 
         public EventDispatcher()
         {
+            inputMap = new Dictionary<InputType, EventType>();
+
             input = new InputInterpreter();
             listeners = new Dictionary<EventListener, EventType>();
         }
@@ -27,20 +31,33 @@ namespace Heist.GameLogic.Input
             listeners.Remove(l);
         }
 
+        public void MapInput(InputType i, EventType e)
+        {
+            inputMap.Add(i, e);
+        }
+
         public void Process()
         {
-            Event e = input.Process();
-
-            if (e != null)
+            List<InputType> list = input.Process();
+            foreach (InputType i in list)
             {
-                foreach (KeyValuePair<EventListener, EventType> l in listeners)
+                EventType e = EventType.None;
+                inputMap.TryGetValue(i, out e);
+
+                Console.WriteLine((int)i + ": " + i);
+
+                if (e != EventType.None)
                 {
-                    if ((l.Value & e.Type) != 0)
+                    foreach (KeyValuePair<EventListener, EventType> l in listeners)
                     {
-                        l.Key.OnEvent(e);
+                        if ((l.Value & e) != 0)
+                        {
+                            l.Key.OnEvent(new Event(e, input.GetLocation(), input.GetScrollAmount()));
+                        }
                     }
                 }
             }
+
         }
 
     }

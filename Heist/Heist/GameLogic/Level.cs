@@ -11,7 +11,7 @@ using System.Text;
 
 namespace Heist.GameLogic
 {
-    class Level : EventListener
+    class Level
     {
         private State state;
         private Renderer rend;
@@ -26,6 +26,9 @@ namespace Heist.GameLogic
             op = new Operator();
 
             disp = new EventDispatcher();
+
+            disp.AddListener(rend, EventType.View);
+            disp.AddListener(op, EventType.Game);
         }
 
         public void Update(GameTime gameTime)
