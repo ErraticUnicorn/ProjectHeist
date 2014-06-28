@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Heist.GameLogic.View;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,9 +44,9 @@ namespace Heist.GameLogic
             return id;
         }
 
-        public Level CreateLevel(Texture2D tex)
+        public Level CreateLevel(ViewDB db)
         {
-            return new Level(tex);
+            return new Level(db);
         }
     }
 }

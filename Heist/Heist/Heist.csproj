@@ -42,10 +42,15 @@
     <Compile Include="Display\UiElement.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameLogic\Controller\Operator.cs" />
+    <Compile Include="GameLogic\Input\Event.cs" />
+    <Compile Include="GameLogic\Input\EventDispatcher.cs" />
+    <Compile Include="GameLogic\Input\EventListener.cs" />
     <Compile Include="GameLogic\Level.cs" />
     <Compile Include="GameLogic\LevelLoader.cs" />
     <Compile Include="GameLogic\Model\State.cs" />
     <Compile Include="GameLogic\View\Renderer.cs" />
+    <Compile Include="GameLogic\View\ViewDB.cs" />
+    <Compile Include="GameLogic\Input\InputInterpreter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screens\InGameScreen.cs" />

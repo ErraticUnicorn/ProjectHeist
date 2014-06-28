@@ -10,15 +10,16 @@ namespace Heist.GameLogic.View
 {
     class Renderer
     {
-        Texture2D tex;
+        ViewDB db;
 
-        public Renderer(Texture2D tex_)
+        public Renderer(ViewDB db_)
         {
-            tex = tex_;
+            db = db_;
         }
 
         public void Draw(GameTime gameTime, SpriteBatch batch, State state)
         {
+            Texture2D tex = db.Get("tex");
             batch.Begin();
             batch.Draw(tex, new Rectangle(state.test.X, state.test.Y, tex.Width, tex.Height), Color.White);
             batch.End();

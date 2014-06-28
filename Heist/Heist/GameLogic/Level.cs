@@ -1,4 +1,5 @@
 ﻿using Heist.GameLogic.Controller;
+using Heist.GameLogic.Input;
 using Heist.GameLogic.Model;
 using Heist.GameLogic.View;
 using Microsoft.Xna.Framework;
@@ -10,21 +11,26 @@ using System.Text;
 
 namespace Heist.GameLogic
 {
-    class Level
+    class Level : EventListener
     {
         private State state;
         private Renderer rend;
         private Operator op;
 
-        public Level(Texture2D tex)
+        private EventDispatcher disp;
+
+        public Level(ViewDB db)
         {
             state = new State(new Point(100, 100));
-            rend = new Renderer(tex);
+            rend = new Renderer(db);
             op = new Operator();
+
+            disp = new EventDispatcher();
         }
 
         public void Update(GameTime gameTime)
         {
+            disp.Process();
             op.Update(gameTime, state);
         }
 
@@ -32,6 +38,5 @@ namespace Heist.GameLogic
         {
             rend.Draw(gameTime, batch, state);
         }
-
     }
 }

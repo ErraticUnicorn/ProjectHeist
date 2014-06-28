@@ -1,5 +1,6 @@
 ﻿using Heist.Display;
 using Heist.GameLogic;
+using Heist.GameLogic.View;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -21,7 +22,10 @@ namespace Heist.Screens
             : base(widthScreen, heightScreen, master)
         {
             LevelLoader load = LevelLoader.GetCurrentLoader();
-            lvl = load.CreateLevel(Load<Texture2D>("Image/red"));
+
+            ViewDB db = new ViewDB();
+            db.Put("tex", Load<Texture2D>("Image/red"));
+            lvl = load.CreateLevel(db);
 
             Texture2D up = Load<Texture2D>("Image/buttonUp");
             Texture2D down = Load<Texture2D>("Image/buttonDown");
