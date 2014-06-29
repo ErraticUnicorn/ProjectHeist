@@ -44,8 +44,6 @@ namespace Heist.GameLogic.Input
                 EventType e = EventType.None;
                 inputMap.TryGetValue(i, out e);
 
-                Console.WriteLine((int)i + ": " + i);
-
                 if (e != EventType.None)
                 {
                     foreach (KeyValuePair<EventListener, EventType> l in listeners)

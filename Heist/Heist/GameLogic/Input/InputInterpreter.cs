@@ -15,6 +15,8 @@ namespace Heist.GameLogic.Input
 
         public InputInterpreter()
         {
+            left = middle = right = false;
+            scroll = scrollDelta = 0;
             pressedKeys = new HashSet<Keys>();
         }
 
@@ -30,10 +32,10 @@ namespace Heist.GameLogic.Input
                 left = true;
                 events.Add(InputType.MouseLeft_Down);
             }
-            else if (left)
+            else if (Mouse.GetState().LeftButton == ButtonState.Released && left)
             {
                 left = false;
-                events.Add(InputType.MouseLeft_Down);
+                events.Add(InputType.MouseLeft_Up);
             }
 
             if (Mouse.GetState().MiddleButton == ButtonState.Pressed && !middle)
@@ -41,10 +43,10 @@ namespace Heist.GameLogic.Input
                 middle = true;
                 events.Add(InputType.MouseMiddle_Down);
             }
-            else if (middle)
+            else if (Mouse.GetState().MiddleButton == ButtonState.Released && middle)
             {
                 middle = false;
-                events.Add(InputType.MouseMiddle_Down);
+                events.Add(InputType.MouseMiddle_Up);
             }
 
             if (Mouse.GetState().RightButton == ButtonState.Pressed && !right)
@@ -52,10 +54,10 @@ namespace Heist.GameLogic.Input
                 right = true;
                 events.Add(InputType.MouseRight_Down);
             }
-            else if (right)
+            else if (Mouse.GetState().RightButton == ButtonState.Released && right)
             {
                 right = false;
-                events.Add(InputType.MouseRight_Down);
+                events.Add(InputType.MouseRight_Up);
             }
 
             scrollDelta = scroll - Mouse.GetState().ScrollWheelValue;

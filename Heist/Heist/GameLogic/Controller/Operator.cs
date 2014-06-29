@@ -10,27 +10,59 @@ namespace Heist.GameLogic.Controller
 {
     class Operator : EventListener
     {
-        int time;
+        int sel;
+
+        Point newSel;
+        Point p;
 
         public Operator()
         {
-            time = 0;
+            sel = -1;
+            newSel = new Point(-1, -1);
+            p = new Point(-1, -1);
         }
 
         public void Update(GameTime gameTime, State state)
         {
-            time += gameTime.ElapsedGameTime.Milliseconds;
-            if (time > 1000)
+            if(newSel != new Point(-1, -1))
             {
-                time = 0;
-                Random rand = new Random();
-                state.test = new Point(rand.Next(100, 200), rand.Next(100, 200));
+                foreach (Entity e in state.GetAllEntities())
+                {
+                    if (newSel.X - e.x < 64 && newSel.Y - e.y < 64 && newSel.X - e.x > 0 && newSel.Y - e.y > 0)
+                    {
+                        if (sel != -1)
+                        {
+                            state.GetEntityById(sel).texName = "red";
+                        }
+                        sel = e.id;
+                        e.texName = "blue";
+                        p = new Point((int) e.x, (int) e.y);
+                        break;
+                    }
+                }
+                newSel = new Point(-1, -1);
+            }
+
+            if (sel != -1)
+            {
+                Entity player = state.GetEntityById(sel);
+                double accel = .025;
+                player.x = (player.x * (1 - accel) + p.X * accel);
+                player.y = (player.y * (1 - accel) + p.Y * accel);
             }
         }
 
         public void OnEvent(Event e)
         {
-
+            switch(e.Type)
+            {
+                case EventType.Action:
+                    p = e.Location;
+                    break;
+                case EventType.Select:
+                    newSel = e.Location;
+                    break;
+            }
         }
     }
 }

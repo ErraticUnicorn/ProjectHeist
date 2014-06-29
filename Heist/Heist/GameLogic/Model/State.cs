@@ -9,12 +9,25 @@ namespace Heist.GameLogic.Model
 {
     class State
     {
-        public Point test;
+        private List<Entity> list;
 
-        public State(Point test_)
+        public State()
         {
-            test = test_;
+            list = new List<Entity>();
+
+            list.Add(new TestEntity("red", 0, 100, 100));
+            list.Add(new TestEntity("red", 1, 200, 100));
+            list.Add(new TestEntity("red", 2, 100, 200));
         }
 
+        public List<Entity> GetAllEntities()
+        {
+            return list;
+        }
+
+        public Entity GetEntityById(int id)
+        {
+            return list[id];
+        }
     }
 }

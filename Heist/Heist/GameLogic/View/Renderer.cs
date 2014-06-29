@@ -20,10 +20,16 @@ namespace Heist.GameLogic.View
 
         public void Draw(GameTime gameTime, SpriteBatch batch, State state)
         {
-            Texture2D tex = db.Get("tex");
+            List<Entity> entities = state.GetAllEntities();
+
             batch.Begin();
-            batch.Draw(tex, new Rectangle(state.test.X, state.test.Y, tex.Width, tex.Height), Color.White);
+            foreach (Entity e in entities)
+            {
+                Texture2D tex = db.Get(e.texName);
+                batch.Draw(tex, new Rectangle((int)e.x, (int)e.y, tex.Width, tex.Height), Color.White);
+            }
             batch.End();
+
         }
 
         public void OnEvent(Event e)

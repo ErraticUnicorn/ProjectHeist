@@ -24,7 +24,8 @@ namespace Heist.Screens
             LevelLoader load = LevelLoader.GetCurrentLoader();
 
             ViewDB db = new ViewDB();
-            db.Put("tex", Load<Texture2D>("Image/red"));
+            db.Put("red", Load<Texture2D>("Image/red"));
+            db.Put("blue", Load<Texture2D>("Image/blue"));
             lvl = load.CreateLevel(db);
 
             Texture2D up = Load<Texture2D>("Image/buttonUp");

@@ -21,11 +21,14 @@ namespace Heist.GameLogic
 
         public Level(ViewDB db)
         {
-            state = new State(new Point(100, 100));
+            state = new State();
             rend = new Renderer(db);
             op = new Operator();
 
             disp = new EventDispatcher();
+
+            disp.MapInput(InputType.MouseLeft_Up, EventType.Select);
+            disp.MapInput(InputType.MouseRight_Up, EventType.Action);
 
             disp.AddListener(rend, EventType.View);
             disp.AddListener(op, EventType.Game);

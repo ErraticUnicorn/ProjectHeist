@@ -49,7 +49,10 @@
     <Compile Include="GameLogic\Input\InputType.cs" />
     <Compile Include="GameLogic\Level.cs" />
     <Compile Include="GameLogic\LevelLoader.cs" />
+    <Compile Include="GameLogic\Model\Dynamic.cs" />
+    <Compile Include="GameLogic\Model\Entity.cs" />
     <Compile Include="GameLogic\Model\State.cs" />
+    <Compile Include="GameLogic\Model\TestEntity.cs" />
     <Compile Include="GameLogic\View\Renderer.cs" />
     <Compile Include="GameLogic\View\ViewDB.cs" />
     <Compile Include="GameLogic\Input\InputInterpreter.cs" />

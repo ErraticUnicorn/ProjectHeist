@@ -14,9 +14,10 @@ namespace Heist.GameLogic.Input
         Pan = 2,
         Action = 4,
         Pause = 8,
+        Select = 8,
 
         View = Zoom | Pan,
-        Game = Action | Pause
+        Game = Action | Pause | Select
     }
 
     class Event
