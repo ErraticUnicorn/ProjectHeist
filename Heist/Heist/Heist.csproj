@@ -41,7 +41,9 @@
     <Compile Include="Display\TextButton.cs" />
     <Compile Include="Display\UiElement.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="GameLogic\Controller\InputPlayer.cs" />
     <Compile Include="GameLogic\Controller\Operator.cs" />
+    <Compile Include="GameLogic\Controller\Player.cs" />
     <Compile Include="GameLogic\Input\KeyboardMapper.cs" />
     <Compile Include="GameLogic\Input\Event.cs" />
     <Compile Include="GameLogic\Input\EventDispatcher.cs" />

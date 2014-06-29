@@ -10,59 +10,27 @@ namespace Heist.GameLogic.Controller
 {
     class Operator : EventListener
     {
-        int sel;
-
-        Point newSel;
-        Point p;
-
+        InputPlayer human;
         public Operator()
         {
-            sel = -1;
-            newSel = new Point(-1, -1);
-            p = new Point(-1, -1);
+            human = new InputPlayer(0);
         }
 
         public void Update(GameTime gameTime, State state)
         {
-            if(newSel != new Point(-1, -1))
+            List<Dynamic> ent = state.GetAllDynamicEntities();
+            human.Process(ent);
+            foreach(Dynamic e in ent)
             {
-                foreach (Entity e in state.GetAllEntities())
-                {
-                    if (newSel.X - e.x < 64 && newSel.Y - e.y < 64 && newSel.X - e.x > 0 && newSel.Y - e.y > 0)
-                    {
-                        if (sel != -1)
-                        {
-                            state.GetEntityById(sel).texName = "red";
-                        }
-                        sel = e.id;
-                        e.texName = "blue";
-                        p = new Point((int) e.x, (int) e.y);
-                        break;
-                    }
-                }
-                newSel = new Point(-1, -1);
-            }
-
-            if (sel != -1)
-            {
-                Entity player = state.GetEntityById(sel);
                 double accel = .025;
-                player.x = (player.x * (1 - accel) + p.X * accel);
-                player.y = (player.y * (1 - accel) + p.Y * accel);
+                e.x = (e.x * (1 - accel) + e.targetX * accel);
+                e.y = (e.y * (1 - accel) + e.targetY * accel);
             }
         }
 
         public void OnEvent(Event e)
         {
-            switch(e.Type)
-            {
-                case EventType.Action:
-                    p = e.Location;
-                    break;
-                case EventType.Select:
-                    newSel = e.Location;
-                    break;
-            }
+            human.OnEvent(e);
         }
     }
 }

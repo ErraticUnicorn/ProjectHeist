@@ -25,6 +25,16 @@ namespace Heist.GameLogic.Model
             return list;
         }
 
+        public List<Dynamic> GetAllDynamicEntities()
+        {
+            List<Dynamic> res = new List<Dynamic>();
+            foreach(Entity e in list)
+            {
+                res.Add((Dynamic) e);
+            }
+            return res;
+        }
+
         public Entity GetEntityById(int id)
         {
             return list[id];
