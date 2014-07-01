@@ -43,6 +43,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="GameLogic\Controller\InputPlayer.cs" />
     <Compile Include="GameLogic\Controller\Operator.cs" />
+    <Compile Include="GameLogic\Controller\Physics.cs" />
     <Compile Include="GameLogic\Controller\Player.cs" />
     <Compile Include="GameLogic\Input\KeyboardMapper.cs" />
     <Compile Include="GameLogic\Input\Event.cs" />

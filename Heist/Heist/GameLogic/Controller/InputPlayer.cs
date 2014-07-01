@@ -28,21 +28,25 @@ namespace Heist.GameLogic.Controller
         {
             if (newSel != new Point(-1, -1))
             {
+                bool change = false;
                 foreach (Dynamic e in entities)
                 {
-                    if (e.id == sel)
-                    {
-                        e.texName = "red";
-                    }
+                    e.texName = "red";
 
                     if (newSel.X - e.x < 64 && newSel.Y - e.y < 64 && newSel.X - e.x > 0 && newSel.Y - e.y > 0)
                     {
                         sel = e.id;
                         e.texName = "blue";
                         p = new Point((int)e.x, (int)e.y);
-                        break;
+                        change = true;
                     }
                 }
+                
+                if(!change)
+                {
+                    sel = -1;
+                }
+
                 newSel = new Point(-1, -1);
             }
 

@@ -11,21 +11,19 @@ namespace Heist.GameLogic.Controller
     class Operator : EventListener
     {
         InputPlayer human;
+        Physics p;
+
         public Operator()
         {
             human = new InputPlayer(0);
+            p = new Physics();
         }
 
         public void Update(GameTime gameTime, State state)
         {
             List<Dynamic> ent = state.GetAllDynamicEntities();
             human.Process(ent);
-            foreach(Dynamic e in ent)
-            {
-                double accel = .025;
-                e.x = (e.x * (1 - accel) + e.targetX * accel);
-                e.y = (e.y * (1 - accel) + e.targetY * accel);
-            }
+            p.Process(ent);
         }
 
         public void OnEvent(Event e)
