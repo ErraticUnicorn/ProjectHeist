@@ -41,6 +41,7 @@
     <Compile Include="Display\TextButton.cs" />
     <Compile Include="Display\UiElement.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="GameLogic\Controller\ComPlayer.cs" />
     <Compile Include="GameLogic\Controller\InputPlayer.cs" />
     <Compile Include="GameLogic\Controller\Operator.cs" />
     <Compile Include="GameLogic\Controller\Physics.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="GameLogic\Input\InputType.cs" />
     <Compile Include="GameLogic\Level.cs" />
     <Compile Include="GameLogic\LevelLoader.cs" />
+    <Compile Include="GameLogic\Model\Control.cs" />
     <Compile Include="GameLogic\Model\Dynamic.cs" />
     <Compile Include="GameLogic\Model\Entity.cs" />
     <Compile Include="GameLogic\Model\State.cs" />

@@ -20,7 +20,7 @@ namespace Heist.GameLogic.View
 
         public void Draw(GameTime gameTime, SpriteBatch batch, State state)
         {
-            List<Entity> entities = state.GetAllEntities();
+            IEnumerable<Entity> entities = state.GetAllEntities();
 
             batch.Begin();
             foreach (Entity e in entities)

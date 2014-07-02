@@ -9,35 +9,32 @@ namespace Heist.GameLogic.Model
 {
     class State
     {
-        private List<Entity> list;
+        private List<Control> player;
+        private List<Control> com;
 
         public State()
         {
-            list = new List<Entity>();
+            player = new List<Control>();
+            com = new List<Control>();
 
-            list.Add(new TestEntity("red", 0, 100, 100));
-            list.Add(new TestEntity("red", 1, 200, 100));
-            list.Add(new TestEntity("red", 2, 100, 200));
+            player.Add(new TestEntity("red", 0, 100, 100, .005));
+            com.Add(new TestEntity("red", 1, 200, 100, .005));
+            player.Add(new TestEntity("red", 2, 100, 200, .005));
         }
 
-        public List<Entity> GetAllEntities()
+        public IEnumerable<Entity> GetAllEntities()
         {
-            return list;
+            return player.Union<Control>(com);
         }
 
-        public List<Dynamic> GetAllDynamicEntities()
+        public IEnumerable<Dynamic> GetDynamicEntities()
         {
-            List<Dynamic> res = new List<Dynamic>();
-            foreach(Entity e in list)
-            {
-                res.Add((Dynamic) e);
-            }
-            return res;
+            return player.Union<Dynamic>(com);
         }
 
-        public Entity GetEntityById(int id)
+        public IEnumerable<Control> GetEntitiesFor(int controller)
         {
-            return list[id];
+            return (controller == 0) ? player : com;
         }
     }
 }

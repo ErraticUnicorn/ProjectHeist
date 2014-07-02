@@ -24,7 +24,7 @@ namespace Heist.GameLogic.Controller
             p = new Point(-1, -1);
         }
 
-        public override void Process(List<Dynamic> entities)
+        public override void Process(IEnumerable<Control> entities)
         {
             if (newSel != new Point(-1, -1))
             {

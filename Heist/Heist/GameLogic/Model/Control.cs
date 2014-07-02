@@ -5,11 +5,14 @@ using System.Text;
 
 namespace Heist.GameLogic.Model
 {
-    class TestEntity : Control
+    abstract class Control : Dynamic
     {
-        public TestEntity(string texName, int id, double x, double y, double accel)
+        public int controller, state;
+
+        public Control(string texName, int id, double x, double y, double accel)
             : base(texName, id, x, y, accel)
         {
+
         }
     }
 }

@@ -15,6 +15,6 @@ namespace Heist.GameLogic.Controller
             id = id_;
         }
 
-        public abstract void Process(List<Dynamic> entities);
+        public abstract void Process(IEnumerable<Control> entities);
     }
 }
