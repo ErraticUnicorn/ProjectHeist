@@ -46,6 +46,10 @@
     <Reference Include="mscorlib" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\CustomContent\CustomContent.csproj">
+      <Project>{6dcdf579-116c-4270-91c8-dc487542e6c1}</Project>
+      <Name>CustomContent</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PipelineContent\PipelineContent.contentproj">
       <Name>PipelineContent</Name>
       <XnaReferenceType>Content</XnaReferenceType>

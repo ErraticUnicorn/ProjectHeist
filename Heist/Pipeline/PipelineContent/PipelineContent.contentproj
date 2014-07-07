@@ -82,6 +82,19 @@
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\entities.dat">
+      <Name>entities</Name>
+      <Processor>DatabaseProcessor</Processor>
+      <Importer>DatabaseImporter</Importer>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CustomContent\CustomContent.csproj">
+      <Project>{6dcdf579-116c-4270-91c8-dc487542e6c1}</Project>
+      <Name>CustomContent</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--
       To modify your build process, add your task inside one of the targets below and uncomment it. 

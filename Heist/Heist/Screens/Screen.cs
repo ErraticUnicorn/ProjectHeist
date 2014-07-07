@@ -23,7 +23,7 @@ namespace Heist.Screens
 
         public abstract void Draw(GameTime gameTime, SpriteBatch batch);
 
-        protected C Load<C>(string name)
+        public C Load<C>(string name)
         {
             return c.Load<C>(name);
         }

@@ -106,7 +106,7 @@ namespace Heist
 
         public void Change<S>() where S : Screen
         {
-            s = (Screen) typeof(S).GetConstructor(new[]{typeof(int), typeof(int), typeof(IScreenMaster)}).Invoke(new object[]{widthScreen, heightScreen, this});
+            s = (Screen)Activator.CreateInstance(typeof(S), widthScreen, heightScreen, this);
         }
     }
 }
