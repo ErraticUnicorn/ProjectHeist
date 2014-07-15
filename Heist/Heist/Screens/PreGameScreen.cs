@@ -1,5 +1,5 @@
 ﻿using Heist.Display;
-using Heist.GameLogic;
+using Heist.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -14,21 +14,21 @@ namespace Heist.Screens
     {
         TextButton cont;
 
-        public PreGameScreen(int widthScreen, int heightScreen, IScreenMaster master, object[] data)
+        public PreGameScreen(int widthScreen, int heightScreen, IScreenMaster master)
             : base(widthScreen, heightScreen, master)
         {
-            LevelLoader lvl = (LevelLoader)data[0];
+            LevelLoader lvl = LevelLoader.GetCurrentLoader();
 
-            Texture2D up = Load<Texture2D>("Image/red");
-            Texture2D down = Load<Texture2D>("Image/blue");
+            Texture2D up = Load<Texture2D>("Image/buttonUp");
+            Texture2D down = Load<Texture2D>("Image/buttonDown");
             SpriteFont font = Load<SpriteFont>("Font/text");
 
             int centerX = widthScreen / 2 - up.Width / 2;
             int centerY = heightScreen / 2 - up.Height / 2;
 
-            cont = new TextButton(centerX, centerY, up, down, font, "Continue to InGame (Level " + lvl.getId() + ")");
+            cont = new TextButton(centerX, centerY, up, down, font, "Continue to InGame (Level " + lvl.GetId() + ")");
 
-            cont.select += delegate() { ChangeScreen<InGameScreen>(new object[] {lvl}); };
+            cont.select += delegate() { ChangeScreen<InGameScreen>(); };
         }
 
         public override void Update(GameTime gameTime)

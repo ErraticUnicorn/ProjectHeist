@@ -23,14 +23,14 @@ namespace Heist.Screens
 
         public abstract void Draw(GameTime gameTime, SpriteBatch batch);
 
-        protected C Load<C>(string name)
+        public C Load<C>(string name)
         {
             return c.Load<C>(name);
         }
 
-        protected void ChangeScreen<S>(object[] data = null) where S : Screen
+        protected void ChangeScreen<S>() where S : Screen
         {
-            c.Change<S>(data);
+            c.Change<S>();
         }
     }
 }

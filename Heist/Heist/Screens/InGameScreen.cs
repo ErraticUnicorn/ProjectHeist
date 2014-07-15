@@ -1,5 +1,8 @@
-﻿using Heist.Display;
-using Heist.GameLogic;
+﻿using Heist;
+using Heist.Display;
+using Heist.Utils;
+using GameLogic;
+using GameLogic.View;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -7,31 +10,40 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GameLogic.Model;
 
 namespace Heist.Screens
 {
     class InGameScreen : Screen
     {
+        Level lvl;
+
         TextButton win;
         TextButton pause;
 
-        public InGameScreen(int widthScreen, int heightScreen, IScreenMaster master, object[] data)
+        public InGameScreen(int widthScreen, int heightScreen, IScreenMaster master)
             : base(widthScreen, heightScreen, master)
         {
-            LevelLoader lvl = (LevelLoader)data[0];
+            LevelLoader load = LevelLoader.GetCurrentLoader();
 
-            Texture2D up = Load<Texture2D>("Image/red");
-            Texture2D down = Load<Texture2D>("Image/blue");
+            StaticData sdb = Load<StaticData>("Entities/entities");
+            ViewDB vdb = new ViewDB();
+            vdb.Put("red", Load<Texture2D>("Image/red"));
+            vdb.Put("blue", Load<Texture2D>("Image/blue"));
+            lvl = load.CreateLevel(sdb, vdb);
+
+            Texture2D up = Load<Texture2D>("Image/buttonUp");
+            Texture2D down = Load<Texture2D>("Image/buttonDown");
             SpriteFont font = Load<SpriteFont>("Font/text");
 
             int centerX = widthScreen / 2 - up.Width / 2;
             int centerY = heightScreen / 2 - up.Height / 2;
-            int spacing = 100;
+            int spacing = 50;
 
             win = new TextButton(centerX, centerY - spacing, up, down, font, "Next Level");
             pause = new TextButton(centerX, centerY + spacing, up, down, font, "Exit");
 
-            win.select += delegate() { ChangeScreen<StoryScreen>(new object[] {new LevelLoader(lvl.getId() + 1)}); };
+            win.select += delegate() { LevelLoader.Load(load.GetId() + 1); ChangeScreen<StoryScreen>(); };
             pause.select += delegate() { ChangeScreen<MainMenuScreen>(); };
         }
 
@@ -59,6 +71,8 @@ namespace Heist.Screens
                     pause.SetPressed(false);
                 }
             }
+
+            lvl.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch batch)
@@ -67,6 +81,8 @@ namespace Heist.Screens
             win.Draw(batch);
             pause.Draw(batch);
             batch.End();
+
+            lvl.Draw(gameTime, batch);
         }
     }
 }
