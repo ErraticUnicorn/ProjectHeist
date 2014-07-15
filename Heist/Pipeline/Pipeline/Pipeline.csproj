@@ -51,8 +51,9 @@
       <Name>CustomContent</Name>
     </ProjectReference>
     <ProjectReference Include="..\PipelineContent\PipelineContent.contentproj">
-      <Name>PipelineContent</Name>
+      <Name>PipelineContent %28Content%29</Name>
       <XnaReferenceType>Content</XnaReferenceType>
+      <Project>{B130C2EB-63BC-4223-80F8-E307F2C65F00}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
