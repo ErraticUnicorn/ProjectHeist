@@ -38,7 +38,6 @@ namespace GameLogic.Controller
                     {
                         sel = e.id;
                         e.texName = "blue";
-                        p = new Point((int)e.x, (int)e.y);
                         change = true;
                     }
                 }
@@ -51,13 +50,18 @@ namespace GameLogic.Controller
                 newSel = new Point(-1, -1);
             }
 
-            foreach (Dynamic e in entities)
+            if (p != new Point(-1, -1))
             {
-                if (e.id == sel)
+                foreach (Dynamic e in entities)
                 {
-                    e.targetX = p.X;
-                    e.targetY = p.Y;
+                    if (e.id == sel)
+                    {
+                        e.wayPoints.Enqueue(new WayPoint(p.X, p.Y, e.accel));
+                        break;
+                    }
                 }
+
+                p = new Point(-1, -1);
             }
         }
 

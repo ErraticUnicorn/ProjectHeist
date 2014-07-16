@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GameLogic.Model
 {
-    public class State
+    class State
     {
         private TestEntityType test;
 

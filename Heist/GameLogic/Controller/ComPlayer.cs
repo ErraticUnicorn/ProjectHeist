@@ -22,8 +22,7 @@ namespace GameLogic.Controller
                 Random rand = new Random();
                 if(rand.NextDouble() < .05)
                 {
-                    e.targetX = rand.NextDouble() * 800;
-                    e.targetY = rand.NextDouble() * 480;
+                    e.wayPoints.Enqueue(new WayPoint(rand.NextDouble() * 800, rand.NextDouble() * 480, e.accel));
                 }
             }
         }
