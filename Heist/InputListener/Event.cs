@@ -14,10 +14,12 @@ namespace InputListener
         Pan = 2,
         Action = 4,
         Pause = 8,
-        Select = 8,
+        Select = 16,
+        Waypoint = 32,
+        WaypointOff = 64,
 
         View = Zoom | Pan,
-        Game = Action | Pause | Select
+        Game = Action | Pause | Select | Waypoint | WaypointOff
     }
 
     public class Event

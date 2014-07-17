@@ -15,19 +15,17 @@ namespace GameLogic.Controller
         {
             foreach (Dynamic e in entities)
             {
-                if (e.wayPoints.Count > 0)
+                WayPoint w = e.GetNextPoint();
+                if (w != null)
                 {
-                    WayPoint w = e.wayPoints.Peek();
-
-                    e.x = (e.x * (1 - w.accel) + w.targetX * w.accel);
-                    e.y = (e.y * (1 - w.accel) + w.targetY * w.accel);
+                    e.x = (e.x * (1 - w.speed) + w.targetX * w.speed);
+                    e.y = (e.y * (1 - w.speed) + w.targetY * w.speed);
 
                     if (Math.Abs(e.x - w.targetX) < EPSILON || Math.Abs(e.y - w.targetY) < EPSILON)
                     {
-                        e.wayPoints.Dequeue();
+                        e.RemoveNextPoint();
                     }
                 }
-
             }
         }
     }

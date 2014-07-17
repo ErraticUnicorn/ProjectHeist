@@ -29,6 +29,10 @@ namespace GameLogic
 
             disp.MapInput(InputType.MouseLeft_Up, EventType.Select);
             disp.MapInput(InputType.MouseRight_Up, EventType.Action);
+            disp.MapInput(InputType.RightShift_Down, EventType.Waypoint);
+            disp.MapInput(InputType.RightShift_Up, EventType.WaypointOff);
+            disp.MapInput(InputType.LeftShift_Down, EventType.Waypoint);
+            disp.MapInput(InputType.LeftShift_Up, EventType.WaypointOff);
 
             disp.AddListener(rend, EventType.View);
             disp.AddListener(op, EventType.Game);

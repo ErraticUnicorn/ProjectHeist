@@ -5,44 +5,67 @@ using System.Text;
 
 namespace GameLogic.Model
 {
-    public struct WayPoint
+    public class WayPoint
     {
-        public double targetX, targetY, accel;
+        public double targetX, targetY, speed;
 
-        public WayPoint(double targetX_, double targetY_, double accel_) 
+        public WayPoint(double targetX_, double targetY_, double speed_) 
         {
             targetX = targetX_;
             targetY = targetY_;
-            accel = accel_;
+            speed = speed_;
         }
     }
 
     public abstract class Dynamic : Entity
     {
-        public double accel;
+        public double maxSpeed;
 
-        public Queue<WayPoint> wayPoints;
+        private Queue<WayPoint> wayPoints;
 
-        public Dynamic(string texName, int id, double x, double y, double accel_, double targetX_, double targetY_)
+        public Dynamic(string texName, int id, double x, double y, double maxSpeed_)
             : base(texName, id, x, y)
         {
             wayPoints = new Queue<WayPoint>();
-            accel = accel_;
-            wayPoints.Enqueue(new WayPoint(accel, x, y));
-        }
-
-        public Dynamic(string texName, int id, double x, double y, double accel_)
-            : base(texName, id, x, y)
-        {
-            wayPoints = new Queue<WayPoint>();
-            accel = accel_;
+            maxSpeed = maxSpeed_;
         }
 
         public Dynamic(string texName, int id, double x, double y)
             : base(texName, id, x, y)
         {
             wayPoints = new Queue<WayPoint>();
-            accel = 0;
+            maxSpeed = 0;
         }
+
+        public WayPoint GetNextPoint()
+        {
+            if(wayPoints.Count == 0) {
+                return null;
+            }
+
+            return wayPoints.Peek();
+        }
+
+        public WayPoint RemoveNextPoint()
+        {
+            return wayPoints.Dequeue();
+        }
+
+        public void AppendWayPoint(WayPoint w)
+        {
+            wayPoints.Enqueue(w);
+        }
+
+        public void ClearWayPoints()
+        {
+            wayPoints.Clear();
+        }
+
+        public void SetWayPoint(WayPoint w)
+        {
+            ClearWayPoints();
+            AppendWayPoint(w);
+        }
+
     }
 }

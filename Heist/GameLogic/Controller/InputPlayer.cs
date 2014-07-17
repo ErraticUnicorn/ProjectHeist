@@ -14,6 +14,8 @@ namespace GameLogic.Controller
         int sel;
 
         Point newSel;
+
+        bool waypoint;
         Point p;
 
         public InputPlayer(int id)
@@ -23,6 +25,7 @@ namespace GameLogic.Controller
 
             newSel = new Point(-1, -1);
             p = new Point(-1, -1);
+            waypoint = false;
         }
 
         public override void Process(IEnumerable<Control> entities)
@@ -56,7 +59,16 @@ namespace GameLogic.Controller
                 {
                     if (e.id == sel)
                     {
-                        e.wayPoints.Enqueue(new WayPoint(p.X, p.Y, e.accel));
+                        WayPoint w = new WayPoint(p.X, p.Y, e.maxSpeed);
+
+                        if (waypoint)
+                        {
+                            e.AppendWayPoint(w);
+                        }
+                        else
+                        {
+                            e.SetWayPoint(w);
+                        }
                         break;
                     }
                 }
@@ -74,6 +86,14 @@ namespace GameLogic.Controller
                     break;
                 case EventType.Select:
                     newSel = e.Location;
+                    break;
+                case EventType.Waypoint:
+                    Console.WriteLine("On");
+                    waypoint = true;
+                    break;
+                case EventType.WaypointOff:
+                    Console.WriteLine("Off");
+                    waypoint = false;
                     break;
             }
         }

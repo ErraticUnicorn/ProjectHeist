@@ -80,11 +80,11 @@ namespace InputListener
             {
                 if (!pressedKeys.Contains(k))
                 {
-                    events.Add(InputFromKey(k, true));
+                    events.Add(InputFromKey(k, false));
                 }
                 else if (!newKeys.Contains(k))
                 {
-                    events.Add(InputFromKey(k, false));
+                    events.Add(InputFromKey(k, true));
                 }
             }
 
