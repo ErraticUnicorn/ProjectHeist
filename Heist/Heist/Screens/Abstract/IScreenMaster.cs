@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Heist.Screens
+namespace Heist.Screens.Abstract
 {
     public interface IScreenMaster
     {

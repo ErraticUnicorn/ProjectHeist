@@ -7,11 +7,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Heist.Screens
+namespace Heist.Screens.Abstract
 {
     abstract class MenuScreen : Screen
     {
-        protected UiElement title;
+        protected UiElement bg, title;
         protected List<Button> buttons;
 
         public MenuScreen(int widthScreen, int heightScreen, IScreenMaster master)
@@ -46,6 +46,7 @@ namespace Heist.Screens
         public override void Draw(GameTime gameTime, SpriteBatch batch)
         {
             batch.Begin();
+            bg.Draw(batch);
             title.Draw(batch);
             foreach(Button button in buttons) 
             {

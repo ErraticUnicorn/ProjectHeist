@@ -7,7 +7,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
-using Heist.Screens;
+using Heist.Screens.Abstract;
+using Heist.Screens.Concrete;
 #endregion
 
 namespace Heist
@@ -77,10 +78,6 @@ namespace Heist
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
-            // TODO: Add your update logic here
             s.Update(gameTime);
 
             base.Update(gameTime);

@@ -7,8 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Heist.Screens.Abstract;
 
-namespace Heist.Screens
+namespace Heist.Screens.Concrete
 {
     class PreGameScreen : Screen
     {

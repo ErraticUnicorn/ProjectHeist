@@ -37,7 +37,7 @@ namespace GameLogic.Controller
                 {
                     e.texName = "red";
 
-                    if (newSel.X - e.x < 64 && newSel.Y - e.y < 64 && newSel.X - e.x > 0 && newSel.Y - e.y > 0)
+                    if (!change && newSel.X - e.x < 64 && newSel.Y - e.y < 64 && newSel.X - e.x > 0 && newSel.Y - e.y > 0)
                     {
                         sel = e.id;
                         e.texName = "blue";
@@ -88,11 +88,9 @@ namespace GameLogic.Controller
                     newSel = e.Location;
                     break;
                 case EventType.Waypoint:
-                    Console.WriteLine("On");
                     waypoint = true;
                     break;
                 case EventType.WaypointOff:
-                    Console.WriteLine("Off");
                     waypoint = false;
                     break;
             }

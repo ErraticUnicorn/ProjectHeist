@@ -10,7 +10,7 @@ namespace Heist.Display
 
     class Image : UiElement
     {
-        private Texture2D tex;
+        protected Texture2D tex;
 
         public Image(int x, int y, Texture2D tex_)
             : base(x, y)

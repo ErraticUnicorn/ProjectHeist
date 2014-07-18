@@ -6,8 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Heist.Screens.Abstract;
+using GameLogic.Model.Display;
 
-namespace Heist.Screens
+namespace Heist.Screens.Concrete
 {
     class LoadGameScreen : MenuScreen
     {
@@ -18,6 +20,9 @@ namespace Heist.Screens
             SpriteFont font = Load<SpriteFont>("Font/text");
 
             int centerX = widthScreen / 2 - up.Width / 2;
+
+            ColorRect c = new ColorRect(0, 0, widthScreen, heightScreen, Color.Black);
+            bg = c;
 
             Label t = new Label(widthScreen / 2, 10, font, "Load Game");
             t.x -= (int)t.GetDim().X / 2;

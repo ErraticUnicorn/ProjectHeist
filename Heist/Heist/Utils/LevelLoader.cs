@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GameLogic;
+using InputListener;
 
 namespace Heist.Utils
 {
@@ -46,9 +47,9 @@ namespace Heist.Utils
             return id;
         }
 
-        public Level CreateLevel(StaticData sdb, ViewDB vdb)
+        public Level CreateLevel(EventListener sysCall, StaticData sdb, ViewDB vdb)
         {
-            return new Level(sdb, vdb);
+            return new Level(sysCall, sdb, vdb);
         }
     }
 }

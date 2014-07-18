@@ -19,9 +19,17 @@ namespace GameLogic.Model
 
             test = sdb.GetTestEntityType("test");
 
-            player.Add(test.NewEntity());
-            com.Add(test.NewEntity());
-            player.Add(test.NewEntity());
+            TestEntity e = test.NewEntity();
+            e.id = 0;
+            player.Add(e);
+
+            e = test.NewEntity();
+            e.id = 1;
+            com.Add(e);
+
+            e = test.NewEntity();
+            e.id = 2;
+            player.Add(e);
         }
 
         public IEnumerable<Entity> GetAllEntities()

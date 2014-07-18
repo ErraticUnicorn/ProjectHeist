@@ -1,15 +1,17 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Heist.Display;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Heist.Screens
+namespace Heist.Screens.Abstract
 {
     public abstract class Screen
     {
         private IScreenMaster c;
+
         protected int widthScreen, heightScreen;
 
         public Screen(int widthScreen_, int heightScreen_, IScreenMaster c_)

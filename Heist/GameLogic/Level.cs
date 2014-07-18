@@ -19,7 +19,7 @@ namespace GameLogic
 
         private EventDispatcher disp;
 
-        public Level(StaticData sdb, ViewDB vdb)
+        public Level(EventListener sysCall, StaticData sdb, ViewDB vdb)
         {
             state = new State(sdb);
             rend = new Renderer(vdb);
@@ -29,13 +29,17 @@ namespace GameLogic
 
             disp.MapInput(InputType.MouseLeft_Up, EventType.Select);
             disp.MapInput(InputType.MouseRight_Up, EventType.Action);
+
             disp.MapInput(InputType.RightShift_Down, EventType.Waypoint);
             disp.MapInput(InputType.RightShift_Up, EventType.WaypointOff);
             disp.MapInput(InputType.LeftShift_Down, EventType.Waypoint);
             disp.MapInput(InputType.LeftShift_Up, EventType.WaypointOff);
 
+            disp.MapInput(InputType.Escape_Up, EventType.End);
+
             disp.AddListener(rend, EventType.View);
             disp.AddListener(op, EventType.Game);
+            disp.AddListener(sysCall, EventType.System);
         }
 
         public void Update(GameTime gameTime)

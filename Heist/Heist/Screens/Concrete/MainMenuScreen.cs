@@ -7,8 +7,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Heist.Screens.Abstract;
+using GameLogic.Model.Display;
 
-namespace Heist.Screens
+namespace Heist.Screens.Concrete
 {
     class MainMenuScreen : MenuScreen
     {
@@ -21,6 +23,9 @@ namespace Heist.Screens
             int centerX = widthScreen / 2 - up.Width / 2;
             int buttonStartY = heightScreen / 3;
             int buttonSpacing = 10;
+
+            ColorRect c = new ColorRect(0, 0, widthScreen, heightScreen, Color.Black);
+            bg = c;
 
             Label t = new Label(widthScreen / 2, 10, font, "Project: Height");
             t.x -= (int)t.GetDim().X / 2;
