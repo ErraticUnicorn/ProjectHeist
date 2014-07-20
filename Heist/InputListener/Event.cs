@@ -18,8 +18,16 @@ namespace InputListener
         Waypoint = 32,
         WaypointOff = 64,
         End = 128,
+        CameraUp = 256,
+        CameraRight = 512,
+        CameraDown = 1024,
+        CameraLeft = 2048,
+        CameraUpEnd = 4096,
+        CameraRightEnd = 8192,
+        CameraDownEnd = 16384,
+        CameraLeftEnd = 32768,
 
-        View = Zoom | Pan,
+        View = Zoom | Pan | CameraUp | CameraRight | CameraDown | CameraLeft | CameraUpEnd | CameraRightEnd | CameraDownEnd | CameraLeftEnd,
         Game = Action | Pause | Select | Waypoint | WaypointOff,
         System = End
     }

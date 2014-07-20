@@ -7,7 +7,8 @@ namespace GameLogic.Model
 {
     class State
     {
-        private TestEntityType test;
+        private int maxId;
+        private StaticData db;
 
         private List<Control> player;
         private List<Control> com;
@@ -16,20 +17,34 @@ namespace GameLogic.Model
         {
             player = new List<Control>();
             com = new List<Control>();
+            maxId = 0;
 
-            test = sdb.GetTestEntityType("test");
+            db = sdb;
 
-            TestEntity e = test.NewEntity();
-            e.id = 0;
-            player.Add(e);
+            AddEntity<TestEntity>(0, "test", 100, 100);
+            AddEntity<TestEntity>(1, "test", 300, 100);
+            AddEntity<TestEntity>(0, "test", 200, 200);
+        }
 
-            e = test.NewEntity();
-            e.id = 1;
-            com.Add(e);
+        public int AddEntity<T>(int controller, String type, int x, int y)
+        {
+            TestEntity e = db.GetTestEntityType(type).NewEntity();
+            e.id = maxId;
+            maxId++;
 
-            e = test.NewEntity();
-            e.id = 2;
-            player.Add(e);
+            e.x = x;
+            e.y = y;
+
+            if (controller == 0)
+            {
+                player.Add(e);
+            }
+            else
+            {
+                com.Add(e);
+            }
+
+            return e.id;
         }
 
         public IEnumerable<Entity> GetAllEntities()
@@ -39,7 +54,16 @@ namespace GameLogic.Model
 
         public IEnumerable<Dynamic> GetDynamicEntities()
         {
-            return player.Union<Dynamic>(com);
+            List<Dynamic> res = new List<Dynamic>();
+            var all = GetAllEntities();
+            foreach(Entity e in all) {
+                if (e is Dynamic)
+                {
+                    res.Add((Dynamic) e);
+                }
+            }
+
+            return res;
         }
 
         public IEnumerable<Control> GetEntitiesFor(int controller)

@@ -17,7 +17,7 @@ namespace GameLogic.Model
         }
     }
 
-    public abstract class Dynamic : Entity
+    public abstract class Dynamic : Control
     {
         public double maxSpeed;
 

@@ -11,7 +11,7 @@ using System.Text;
 
 namespace GameLogic
 {
-    public class Level
+    public class Level : EventListener
     {
         private State state;
         private Renderer rend;
@@ -35,11 +35,21 @@ namespace GameLogic
             disp.MapInput(InputType.LeftShift_Down, EventType.Waypoint);
             disp.MapInput(InputType.LeftShift_Up, EventType.WaypointOff);
 
+            disp.MapInput(InputType.Up_Down, EventType.CameraUp);
+            disp.MapInput(InputType.Right_Down, EventType.CameraRight);
+            disp.MapInput(InputType.Down_Down, EventType.CameraDown);
+            disp.MapInput(InputType.Left_Down, EventType.CameraLeft);
+            disp.MapInput(InputType.Up_Up, EventType.CameraUpEnd);
+            disp.MapInput(InputType.Right_Up, EventType.CameraRightEnd);
+            disp.MapInput(InputType.Down_Up, EventType.CameraDownEnd);
+            disp.MapInput(InputType.Left_Up, EventType.CameraLeftEnd);
+
             disp.MapInput(InputType.Escape_Up, EventType.End);
 
             disp.AddListener(rend, EventType.View);
-            disp.AddListener(op, EventType.Game);
+            disp.AddListener(this, EventType.Game);
             disp.AddListener(sysCall, EventType.System);
+
         }
 
         public void Update(GameTime gameTime)
@@ -51,6 +61,12 @@ namespace GameLogic
         public void Draw(GameTime gameTime, SpriteBatch batch)
         {
             rend.Draw(gameTime, batch, state);
+        }
+
+        public void OnEvent(Event e)
+        {
+            Event newE = new Event(e.Type, rend.ScreenToWorld(e.Location), e.Scroll);
+            op.OnEvent(newE);
         }
     }
 }

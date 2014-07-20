@@ -11,6 +11,7 @@ namespace GameLogic.Model
         public string texName;
         public int id;
         public double x, y;
+        public int collideX, collideY;
 
         public Entity(string texName_, int id_, double x_, double y_)
         {
@@ -18,6 +19,8 @@ namespace GameLogic.Model
             id = id_;
             x = x_;
             y = y_;
+            collideX = -1;
+            collideY = -1;
         }
 
         public abstract Rectangle GetHitBox();

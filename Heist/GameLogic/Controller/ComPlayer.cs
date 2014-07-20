@@ -20,9 +20,9 @@ namespace GameLogic.Controller
             foreach (Control e in entities)
             {
                 Random rand = new Random();
-                if(rand.NextDouble() < .05)
+                if(rand.NextDouble() < .05 && e is Dynamic)
                 {
-                    e.AppendWayPoint(new WayPoint(rand.NextDouble() * 800, rand.NextDouble() * 480, e.maxSpeed));
+                    ((Dynamic) e).AppendWayPoint(new WayPoint(rand.NextDouble() * 800, rand.NextDouble() * 480, ((Dynamic) e).maxSpeed));
                 }
             }
         }

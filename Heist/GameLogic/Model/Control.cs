@@ -5,12 +5,12 @@ using System.Text;
 
 namespace GameLogic.Model
 {
-    public abstract class Control : Dynamic
+    public abstract class Control : Entity
     {
         public int state;
 
-        public Control(string texName, int id, double x, double y, double accel)
-            : base(texName, id, x, y, accel)
+        public Control(string texName, int id, double x, double y)
+            : base(texName, id, x, y)
         {
 
         }

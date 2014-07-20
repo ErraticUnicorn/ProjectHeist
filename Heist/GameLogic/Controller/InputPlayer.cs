@@ -28,51 +28,61 @@ namespace GameLogic.Controller
             waypoint = false;
         }
 
+        private void changeSelection(IEnumerable<Control> entities)
+        {
+            bool change = false;
+            foreach (Dynamic e in entities)
+            {
+                e.texName = "red";
+
+                if (!change && newSel.X - e.x < 64 && newSel.Y - e.y < 64 && newSel.X - e.x > 0 && newSel.Y - e.y > 0)
+                {
+                    sel = e.id;
+                    e.texName = "blue";
+                    change = true;
+                }
+            }
+
+            if (!change)
+            {
+                sel = -1;
+            }
+        }
+
+        private void applyAction(IEnumerable<Control> entities)
+        {
+            foreach (Control e in entities)
+            {
+                if (e.id == sel && e is Dynamic)
+                {
+                    Dynamic d = (Dynamic)e;
+                    WayPoint w = new WayPoint(p.X, p.Y, d.maxSpeed);
+
+                    if (waypoint)
+                    {
+                        d.AppendWayPoint(w);
+                    }
+                    else
+                    {
+                        d.SetWayPoint(w);
+                    }
+                    break;
+                }
+            }
+
+        }
+
         public override void Process(IEnumerable<Control> entities)
         {
             if (newSel != new Point(-1, -1))
             {
-                bool change = false;
-                foreach (Dynamic e in entities)
-                {
-                    e.texName = "red";
-
-                    if (!change && newSel.X - e.x < 64 && newSel.Y - e.y < 64 && newSel.X - e.x > 0 && newSel.Y - e.y > 0)
-                    {
-                        sel = e.id;
-                        e.texName = "blue";
-                        change = true;
-                    }
-                }
-                
-                if(!change)
-                {
-                    sel = -1;
-                }
-
+                changeSelection(entities);
                 newSel = new Point(-1, -1);
             }
 
             if (p != new Point(-1, -1))
             {
-                foreach (Dynamic e in entities)
-                {
-                    if (e.id == sel)
-                    {
-                        WayPoint w = new WayPoint(p.X, p.Y, e.maxSpeed);
-
-                        if (waypoint)
-                        {
-                            e.AppendWayPoint(w);
-                        }
-                        else
-                        {
-                            e.SetWayPoint(w);
-                        }
-                        break;
-                    }
-                }
-
+                applyAction(entities);
                 p = new Point(-1, -1);
             }
         }
