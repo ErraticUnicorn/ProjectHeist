@@ -78,9 +78,9 @@ namespace CustomContent
         public override StaticData Process(SQLiteConnection input, ContentProcessorContext context)
         {
             input.Open();
-            var test = ReadTable<TestEntityType>(input, "TestEntity", 0);
+            var test = ReadTable<TestEntityFactory>(input, "TestEntity", 0);
             input.Close();
-            test.Add("rer", new TestEntityType("b","b",new Decimal(.1)));
+            test.Add("rer", new TestEntityFactory("b","b",new Decimal(.1)));
 
             return new StaticData(test);
         }

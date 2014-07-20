@@ -7,7 +7,7 @@ using System.Text;
 namespace GameLogic.Model
 {
     [DataContract]
-    public class TestEntityType : EntityType<TestEntity>
+    public class TestEntityFactory : EntityFactory<TestEntity>
     {
         [DataMember]
         private String name;
@@ -16,14 +16,14 @@ namespace GameLogic.Model
         [DataMember]
         private double accel;
 
-        public TestEntityType(String name_, String texName_, decimal accel_)
+        public TestEntityFactory(String name_, String texName_, decimal accel_)
         {
             name = name_;
             texName = texName_;
             accel = (double)accel_;
         }
 
-        public TestEntityType(String name_, String texName_, double accel_)
+        public TestEntityFactory(String name_, String texName_, double accel_)
         {
             name = name_;
             texName = texName_;

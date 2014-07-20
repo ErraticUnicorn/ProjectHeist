@@ -22,7 +22,7 @@ namespace GameLogic.Controller
                 Random rand = new Random();
                 if(rand.NextDouble() < .05 && e is Dynamic)
                 {
-                    ((Dynamic) e).AppendWayPoint(new WayPoint(rand.NextDouble() * 800, rand.NextDouble() * 480, ((Dynamic) e).maxSpeed));
+                    ((Dynamic)e).AppendWayPoint(new WayPoint(rand.NextDouble() * 466.476, rand.NextDouble() * 466.476, ((Dynamic)e).maxSpeed));
                 }
             }
         }

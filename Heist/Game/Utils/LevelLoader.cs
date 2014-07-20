@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using GameLogic;
 using InputListener;
+using Heist.Screens.Concrete;
 
 namespace Heist.Utils
 {
@@ -47,9 +48,14 @@ namespace Heist.Utils
             return id;
         }
 
-        public Level CreateLevel(EventListener sysCall, StaticData sdb, ViewDB vdb)
+        public Level CreateLevel(InGameScreen screen)
         {
-            return new Level(sysCall, sdb, vdb);
+            StaticData sdb = screen.Load<StaticData>("Entities/entities");
+            ViewDB vdb = new ViewDB();
+            vdb.Put("red", screen.Load<Texture2D>("Image/red"));
+            vdb.Put("blue", screen.Load<Texture2D>("Image/blue"));
+            vdb.Put("bg", screen.Load<Texture2D>("Image/bg"));
+            return new Level(screen, sdb, vdb);
         }
     }
 }

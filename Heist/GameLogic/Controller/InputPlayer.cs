@@ -12,8 +12,7 @@ namespace GameLogic.Controller
     class InputPlayer : Player
     {
         int sel;
-
-        Point newSel;
+        int oldSel;
 
         bool waypoint;
         Point p;
@@ -22,31 +21,10 @@ namespace GameLogic.Controller
             : base(id)
         {
             sel = -1;
+            oldSel = -1;
 
-            newSel = new Point(-1, -1);
             p = new Point(-1, -1);
             waypoint = false;
-        }
-
-        private void changeSelection(IEnumerable<Control> entities)
-        {
-            bool change = false;
-            foreach (Dynamic e in entities)
-            {
-                e.texName = "red";
-
-                if (!change && newSel.X - e.x < 64 && newSel.Y - e.y < 64 && newSel.X - e.x > 0 && newSel.Y - e.y > 0)
-                {
-                    sel = e.id;
-                    e.texName = "blue";
-                    change = true;
-                }
-            }
-
-            if (!change)
-            {
-                sel = -1;
-            }
         }
 
         private void applyAction(IEnumerable<Control> entities)
@@ -74,10 +52,20 @@ namespace GameLogic.Controller
 
         public override void Process(IEnumerable<Control> entities)
         {
-            if (newSel != new Point(-1, -1))
+            if (sel != oldSel)
             {
-                changeSelection(entities);
-                newSel = new Point(-1, -1);
+                foreach (Entity e in entities)
+                {
+                    if (e.id == sel)
+                    {
+                        e.texName = "blue";
+                    }
+                    else if (e.id == oldSel)
+                    {
+                        e.texName = "red";
+                    }
+                }
+                oldSel = sel;
             }
 
             if (p != new Point(-1, -1))
@@ -94,9 +82,6 @@ namespace GameLogic.Controller
                 case EventType.Action:
                     p = e.Location;
                     break;
-                case EventType.Select:
-                    newSel = e.Location;
-                    break;
                 case EventType.Waypoint:
                     waypoint = true;
                     break;
@@ -104,6 +89,12 @@ namespace GameLogic.Controller
                     waypoint = false;
                     break;
             }
+        }
+
+        public void OnSelect(int id)
+        {
+            oldSel = sel;
+            sel = id;
         }
     }
 }

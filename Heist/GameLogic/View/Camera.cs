@@ -11,12 +11,14 @@ namespace GameLogic.View
     {
         private int x, y;
         private Viewport v;
-
+        private Matrix projection;
         public Camera(int x_, int y_, Viewport v_)
         {
             x = x_;
             y = y_;
             v = v_;
+
+            projection = Matrix.CreateRotationZ((float)(Math.PI / 4)) * Matrix.CreateScale(1, .5f, 1) * Matrix.CreateTranslation(400, 0, 0);
         }
 
         public void Pan(int deltaX, int deltaY)
@@ -25,14 +27,27 @@ namespace GameLogic.View
             y += deltaY;
         }
 
-        public Matrix GetTransform()
+        private Matrix GetTransform()
         {
-            return Matrix.CreateTranslation(x, y, 0);
+            return projection * Matrix.CreateTranslation(x, y, 0);
+        }
+
+        public Point WorldToScreen(Point world)
+        {
+            Vector3 screen = new Vector3(world.X, world.Y, 0);
+            Matrix trans = GetTransform();
+            screen = Vector3.Transform(screen, trans);
+
+            return new Point((int)screen.X, (int)screen.Y);
         }
 
         public Point ScreenToWorld(Point screen)
         {
-            return new Point(screen.X - x, screen.Y - y);
+            Vector3 world = new Vector3(screen.X, screen.Y, 0);
+            Matrix trans = Matrix.Invert(GetTransform());
+            world = Vector3.Transform(world, trans);
+
+            return new Point((int)world.X, (int)world.Y);
         }
     }
 }

@@ -27,8 +27,8 @@ namespace InputListener
         CameraDownEnd = 16384,
         CameraLeftEnd = 32768,
 
-        View = Zoom | Pan | CameraUp | CameraRight | CameraDown | CameraLeft | CameraUpEnd | CameraRightEnd | CameraDownEnd | CameraLeftEnd,
-        Game = Action | Pause | Select | Waypoint | WaypointOff,
+        View = Select | Zoom | Pan | CameraUp | CameraRight | CameraDown | CameraLeft | CameraUpEnd | CameraRightEnd | CameraDownEnd | CameraLeftEnd,
+        Game = Action | Pause | Waypoint | WaypointOff,
         System = End
     }
 

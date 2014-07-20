@@ -21,12 +21,15 @@ namespace GameLogic.Model
 
             db = sdb;
 
-            AddEntity<TestEntity>(0, "test", 100, 100);
+            AddEntity<TestEntity>(0, "test", 368, 208);
             AddEntity<TestEntity>(1, "test", 300, 100);
-            AddEntity<TestEntity>(0, "test", 200, 200);
+            AddEntity<TestEntity>(0, "test", 0, 0);
+            AddEntity<TestEntity>(0, "test", 466.476, 0);
+            AddEntity<TestEntity>(0, "test", 0, 466.476);
+            AddEntity<TestEntity>(0, "test", 466.476, 466.476);
         }
 
-        public int AddEntity<T>(int controller, String type, int x, int y)
+        public int AddEntity<T>(int controller, String type, double x, double y)
         {
             TestEntity e = db.GetTestEntityType(type).NewEntity();
             e.id = maxId;

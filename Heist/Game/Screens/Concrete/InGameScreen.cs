@@ -25,11 +25,7 @@ namespace Heist.Screens.Concrete
         {
             LevelLoader load = LevelLoader.GetCurrentLoader();
 
-            StaticData sdb = Load<StaticData>("Entities/entities");
-            ViewDB vdb = new ViewDB();
-            vdb.Put("red", Load<Texture2D>("Image/red"));
-            vdb.Put("blue", Load<Texture2D>("Image/blue"));
-            lvl = load.CreateLevel(this, sdb, vdb);
+            lvl = load.CreateLevel(this);
         }
 
         public override void Update(GameTime gameTime)

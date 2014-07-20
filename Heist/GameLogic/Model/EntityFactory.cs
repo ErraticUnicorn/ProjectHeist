@@ -7,7 +7,7 @@ using System.Text;
 namespace GameLogic.Model
 {
     [DataContract]
-    public abstract class EntityType<T> where T : Entity
+    public abstract class EntityFactory<T> where T : Entity
     {
         public abstract T NewEntity();
     }

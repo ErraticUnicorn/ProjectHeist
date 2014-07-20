@@ -22,8 +22,8 @@ namespace GameLogic
         public Level(EventListener sysCall, StaticData sdb, ViewDB vdb)
         {
             state = new State(sdb);
-            rend = new Renderer(vdb);
             op = new Operator();
+            rend = new Renderer(vdb, op.OnSelect);
 
             disp = new EventDispatcher();
 
@@ -55,6 +55,7 @@ namespace GameLogic
         public void Update(GameTime gameTime)
         {
             disp.Process();
+            rend.Update(gameTime, state);
             op.Update(gameTime, state);
         }
 

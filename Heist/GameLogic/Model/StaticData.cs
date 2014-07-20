@@ -13,14 +13,14 @@ namespace GameLogic.Model
     public class StaticData
     {
         [DataMember]
-        public Dictionary<String, TestEntityType> test;
+        public Dictionary<String, TestEntityFactory> test;
 
-        public StaticData(Dictionary<String, TestEntityType> test_)
+        public StaticData(Dictionary<String, TestEntityFactory> test_)
         {
             test = test_;
         }
 
-        public TestEntityType GetTestEntityType(String name)
+        public TestEntityFactory GetTestEntityType(String name)
         {
             return test[name];
         }

@@ -35,5 +35,10 @@ namespace GameLogic.Controller
         {
             human.OnEvent(e);
         }
+
+        public void OnSelect(int id)
+        {
+            human.OnSelect(id);
+        }
     }
 }
