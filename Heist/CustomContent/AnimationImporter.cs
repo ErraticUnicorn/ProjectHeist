@@ -55,7 +55,7 @@ namespace CustomContent
 
             foreach (XmlNode node in root.ChildNodes)
             {
-                switch (node.Value)
+                switch (node.Name)
                 {
 
                     case "sheet":
