@@ -55,6 +55,7 @@ namespace Heist.Utils
             vdb.Put("red", screen.Load<Texture2D>("Image/red"));
             vdb.Put("blue", screen.Load<Texture2D>("Image/blue"));
             vdb.Put("bg", screen.Load<Texture2D>("Image/bg"));
+            vdb.Put("anim", screen.Load<AnimatedTexture2D>("Image/test"));
             return new Level(screen, sdb, vdb);
         }
     }

@@ -42,6 +42,11 @@ namespace Heist
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            graphics.IsFullScreen = false;
+            graphics.PreferredBackBufferWidth = 800;
+            graphics.PreferredBackBufferHeight = 400;
+            graphics.ApplyChanges();
+
             widthScreen = this.GraphicsDevice.Viewport.Width;
             heightScreen = this.GraphicsDevice.Viewport.Height;
 

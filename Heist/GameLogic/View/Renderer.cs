@@ -13,6 +13,7 @@ namespace GameLogic.View
 
     class Renderer : EventListener
     {
+        AnimatedTexture2D anim;
         Point newSel;
 
         int xPan, yPan;
@@ -25,10 +26,19 @@ namespace GameLogic.View
             newSel = new Point(-1, -1);
 
             db = db_;
-            c = new Camera(0, 0, new Viewport(0, 0, 800, 480));
+            c = new Camera(0, 0, new Viewport(0, 0, 800, 400));
             xPan = yPan = 0;
 
             onSelect = onSelect_;
+
+            anim = db.GetAnimation("anim");
+        }
+
+        private Rectangle GetRenderBox(Entity e)
+        {
+            Texture2D tex = db.Get(e.texName);
+            Point p = c.WorldToScreen(new Point((int)e.x, (int)e.y));
+            return new Rectangle(p.X - tex.Width / 2, p.Y - tex.Height, tex.Width, tex.Height);
         }
 
         private void ChangeSelection(IEnumerable<Entity> entities)
@@ -36,9 +46,8 @@ namespace GameLogic.View
             int sel = -1;
             foreach (Entity e in entities)
             {
-                Texture2D tex = db.Get(e.texName);
-                Point p = c.WorldToScreen(new Point((int)e.x, (int)e.y));
-                if (newSel.X - p.X < tex.Height && newSel.Y - p.Y < tex.Width && newSel.X - p.X > 0 && newSel.Y - p.Y > 0)
+                Rectangle r = GetRenderBox(e);
+                if (r.Contains(newSel))
                 {
                     sel = e.id;
                 }
@@ -49,6 +58,8 @@ namespace GameLogic.View
 
         public void Update(GameTime gameTime, State state)
         {
+            anim.UpdateTime(gameTime);
+
             if (newSel != new Point(-1, -1))
             {
                 IEnumerable<Entity> entities = state.GetAllEntities();
@@ -68,11 +79,11 @@ namespace GameLogic.View
             batch.Begin();
             Texture2D bg = db.Get("bg");
             batch.Draw(bg, new Rectangle(0, 0, bg.Width, bg.Height), Color.White);
+            anim.Draw(batch, 20, 20);
             foreach (Entity e in entities)
             {
                 Texture2D tex = db.Get(e.texName);
-                Point p = c.WorldToScreen(new Point((int)e.x, (int)e.y));
-                batch.Draw(tex, new Rectangle(p.X, p.Y, tex.Width, tex.Height), Color.White);
+                batch.Draw(tex, GetRenderBox(e), Color.White);
             }
             batch.End();
 

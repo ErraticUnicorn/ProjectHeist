@@ -58,6 +58,7 @@
     <Compile Include="Model\TestEntity.cs" />
     <Compile Include="Model\TestEntityFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\AnimatedTexture2D.cs" />
     <Compile Include="View\Camera.cs" />
     <Compile Include="View\Renderer.cs" />
     <Compile Include="View\ViewDB.cs" />

@@ -23,10 +23,11 @@ namespace GameLogic.Model
 
             AddEntity<TestEntity>(0, "test", 368, 208);
             AddEntity<TestEntity>(1, "test", 300, 100);
+
             AddEntity<TestEntity>(0, "test", 0, 0);
-            AddEntity<TestEntity>(0, "test", 466.476, 0);
-            AddEntity<TestEntity>(0, "test", 0, 466.476);
-            AddEntity<TestEntity>(0, "test", 466.476, 466.476);
+            AddEntity<TestEntity>(0, "test", 570, 0);
+            AddEntity<TestEntity>(0, "test", 0, 570);
+            AddEntity<TestEntity>(0, "test", 570, 570);
         }
 
         public int AddEntity<T>(int controller, String type, double x, double y)

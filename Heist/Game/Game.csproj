@@ -42,6 +42,7 @@
     <Compile Include="Display\TextButton.cs" />
     <Compile Include="Display\UiElement.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Utils\AnimatedTexture2DReader.cs" />
     <Compile Include="Utils\LevelLoader.cs" />
     <Compile Include="Utils\StaticDataReader.cs" />
     <Compile Include="Program.cs" />

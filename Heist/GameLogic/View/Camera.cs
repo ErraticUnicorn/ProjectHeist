@@ -18,7 +18,7 @@ namespace GameLogic.View
             y = y_;
             v = v_;
 
-            projection = Matrix.CreateRotationZ((float)(Math.PI / 4)) * Matrix.CreateScale(1, .5f, 1) * Matrix.CreateTranslation(400, 0, 0);
+            projection = Matrix.CreateRotationZ((float)(Math.PI / 4)) * Matrix.CreateScale(1, .5f, 1) * Matrix.CreateTranslation(v.Width / 2, 0, 0);
         }
 
         public void Pan(int deltaX, int deltaY)
