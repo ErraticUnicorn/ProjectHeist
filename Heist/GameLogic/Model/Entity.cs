@@ -9,6 +9,9 @@ namespace GameLogic.Model
     public abstract class Entity
     {
         public string texName;
+        public int index;
+        public double time;
+
         public int id;
         public double x, y;
         public int collideX, collideY;
