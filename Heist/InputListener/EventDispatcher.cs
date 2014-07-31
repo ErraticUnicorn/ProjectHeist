@@ -8,20 +8,20 @@ namespace InputListener
 
     public class EventDispatcher
     {
-        Dictionary<InputType, EventType> inputMap;
+        Dictionary<InputType, int> inputMap;
 
         InputInterpreter input;
-        Dictionary<EventListener, EventType> listeners;
+        Dictionary<EventListener, int> listeners;
 
         public EventDispatcher()
         {
-            inputMap = new Dictionary<InputType, EventType>();
+            inputMap = new Dictionary<InputType, int>();
 
             input = new InputInterpreter();
-            listeners = new Dictionary<EventListener, EventType>();
+            listeners = new Dictionary<EventListener, int>();
         }
 
-        public void AddListener(EventListener l, EventType e)
+        public void AddListener(EventListener l, int e)
         {
             listeners.Add(l, e);
         }
@@ -31,7 +31,7 @@ namespace InputListener
             listeners.Remove(l);
         }
 
-        public void MapInput(InputType i, EventType e)
+        public void MapInput(InputType i, int e)
         {
             inputMap.Add(i, e);
         }
@@ -41,12 +41,12 @@ namespace InputListener
             List<InputType> list = input.Process();
             foreach (InputType i in list)
             {
-                EventType e = EventType.None;
+                int e = 0;
                 inputMap.TryGetValue(i, out e);
 
-                if (e != EventType.None)
+                if (e != 0)
                 {
-                    foreach (KeyValuePair<EventListener, EventType> l in listeners)
+                    foreach (KeyValuePair<EventListener, int> l in listeners)
                     {
                         if ((l.Value & e) != 0)
                         {
