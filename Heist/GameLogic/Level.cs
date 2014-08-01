@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GameLogic.Model.Static;
 
 namespace GameLogic
 {
@@ -44,11 +45,11 @@ namespace GameLogic
 
         private EventDispatcher disp;
 
-        public Level(EventListener sysCall, StaticData sdb, ViewDB vdb)
+        public Level(EventListener sysCall, StaticData sdb, ViewDB vdb, Viewport view)
         {
             state = new State(sdb);
             op = new Operator();
-            rend = new Renderer(vdb, op.OnSelect);
+            rend = new Renderer(vdb, view, op.OnSelect);
 
             disp = new EventDispatcher();
 

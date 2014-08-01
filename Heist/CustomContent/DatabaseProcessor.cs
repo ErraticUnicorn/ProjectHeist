@@ -10,6 +10,7 @@ using System.Data.SQLite;
 using System.Data;
 using System.Reflection;
 using GameLogic.Model;
+using GameLogic.Model.Static;
 
 namespace CustomContent
 {

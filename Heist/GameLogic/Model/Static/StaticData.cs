@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace GameLogic.Model
+namespace GameLogic.Model.Static
 {
     [DataContract]
     public class StaticData

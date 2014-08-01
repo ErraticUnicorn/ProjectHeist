@@ -1,4 +1,5 @@
 ﻿using GameLogic.Model;
+using GameLogic.Model.Abstract;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -53,5 +54,14 @@ namespace GameLogic.View
             return new Rectangle(index % col * w, index / col * h, w, h);
         }
 
+        public int GetWidth()
+        {
+            return w;
+        }
+
+        public int GetHeight()
+        {
+            return h;
+        }
     }
 }

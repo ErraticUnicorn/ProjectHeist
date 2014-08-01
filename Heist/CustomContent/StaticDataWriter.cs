@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Content.Pipeline.Serialization.Compiler;
 using Microsoft.Xna.Framework.Content;
 using System.Runtime.Serialization.Json;
 using GameLogic.Model;
+using GameLogic.Model.Static;
 
 namespace CustomContent
 {

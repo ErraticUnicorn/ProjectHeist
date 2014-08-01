@@ -1,10 +1,11 @@
-﻿using System;
+﻿using GameLogic.Model.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace GameLogic.Model
+namespace GameLogic.Model.Static
 {
     [DataContract]
     public class TestEntityFactory : EntityFactory<TestEntity>

@@ -1,10 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GameLogic.Model.Abstract;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GameLogic.Model
+namespace GameLogic.Model.Concrete
 {
     public class TestEntity : Dynamic
     {
@@ -15,7 +16,7 @@ namespace GameLogic.Model
 
         public override Rectangle GetHitBox()
         {
-            return new Rectangle((int)x, (int)y, 64, 64);
+            return new Rectangle((int)x, (int)y, 32, 64);
         }
     }
 }

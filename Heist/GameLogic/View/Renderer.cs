@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GameLogic.Model.Abstract;
 
 namespace GameLogic.View
 {
@@ -20,12 +21,12 @@ namespace GameLogic.View
         Camera c;
         SelectionCallback onSelect;
 
-        public Renderer(ViewDB db_, SelectionCallback onSelect_)
+        public Renderer(ViewDB db_, Viewport view, SelectionCallback onSelect_)
         {
             newSel = new Point(-1, -1);
 
             db = db_;
-            c = new Camera(0, 0, new Viewport(0, 0, 800, 400));
+            c = new Camera(0, 0, view);
             xPan = yPan = 0;
 
             onSelect = onSelect_;
@@ -111,7 +112,7 @@ namespace GameLogic.View
                 else
                 {
                     Texture2D tex = anim.GetSheet();
-                    Rectangle p = GetRenderBox(e, tex.Width, tex.Height);
+                    Rectangle p = GetRenderBox(e, anim.GetWidth(), anim.GetHeight());
                     batch.Draw(tex, new Vector2(p.X, p.Y), anim.GetWindow(e.index), Color.White, 0.0f, 
                         Vector2.Zero, 1.0f, SpriteEffects.None, 0.0f);
                 }

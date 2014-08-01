@@ -8,6 +8,7 @@ using System.Text;
 using GameLogic;
 using InputListener;
 using Heist.Screens.Concrete;
+using GameLogic.Model.Static;
 
 namespace Heist.Utils
 {
@@ -56,7 +57,7 @@ namespace Heist.Utils
             vdb.Put("blue", screen.Load<Texture2D>("Image/blue"));
             vdb.Put("bg", screen.Load<Texture2D>("Image/bg"));
             vdb.Put("anim", screen.Load<AnimatedTexture2D>("Image/test"));
-            return new Level(screen, sdb, vdb);
+            return new Level(screen, sdb, vdb, new Viewport(0, 0, 800, 400));
         }
     }
 }

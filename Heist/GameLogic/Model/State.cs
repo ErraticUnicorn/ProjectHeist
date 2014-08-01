@@ -1,4 +1,7 @@
-﻿using System;
+﻿using GameLogic.Model.Abstract;
+using GameLogic.Model.Concrete;
+using GameLogic.Model.Static;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -51,6 +54,18 @@ namespace GameLogic.Model
             return e.id;
         }
 
+        public void RemoveEntity(int controller, int id)
+        {
+            if (controller == 0)
+            {
+                player.RemoveAt(id);
+            }
+            else
+            {
+                com.RemoveAt(id);
+            }
+        }
+
         public IEnumerable<Entity> GetAllEntities()
         {
             return player.Union<Control>(com);
@@ -66,7 +81,7 @@ namespace GameLogic.Model
                     res.Add((Dynamic) e);
                 }
             }
-
+            
             return res;
         }
 
