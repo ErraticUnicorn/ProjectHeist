@@ -43,8 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\FSM\Behavior.cs" />
+    <Compile Include="Controller\FSM\BehaviorFactory.cs" />
     <Compile Include="Controller\ComPlayer.cs" />
-    <Compile Include="Controller\FiniteStateMachine.cs" />
+    <Compile Include="Controller\FSM\FiniteStateMachine.cs" />
+    <Compile Include="Controller\FSM\RandomWalk.cs" />
+    <Compile Include="Controller\FSM\SitStill.cs" />
     <Compile Include="Controller\InputPlayer.cs" />
     <Compile Include="Controller\Operator.cs" />
     <Compile Include="Controller\Physics.cs" />

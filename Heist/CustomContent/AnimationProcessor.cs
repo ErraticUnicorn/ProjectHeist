@@ -26,7 +26,7 @@ namespace CustomContent
     {
         public override AnimationData Process(AnimationData input, ContentProcessorContext context)
         {
-            var inRef = new ExternalReference<TextureContent>("Image/testAnim.png");//input.sheet);
+            var inRef = new ExternalReference<TextureContent>(input.sheet);
             input.sheetRef = context.BuildAsset<TextureContent, TextureContent>(inRef, "TextureProcessor");
             return input;
         }

@@ -32,10 +32,10 @@ namespace GameLogic.View
             onSelect = onSelect_;
         }
 
-        private Rectangle GetRenderBox(Entity e, int width, int height)
+        private Vector2 GetRenderPosition(Entity e, int width, int height)
         {
             Point p = c.WorldToScreen(new Point((int)e.x, (int)e.y));
-            return new Rectangle(p.X - width / 2, p.Y - height, width, height);
+            return new Vector2(p.X - width / 2, p.Y - height);
         }
 
         private void ChangeSelection(IEnumerable<Entity> entities)
@@ -60,7 +60,8 @@ namespace GameLogic.View
                     height = rect.Height;
                 }
 
-                Rectangle r = GetRenderBox(e, width, height);
+                Vector2 p = GetRenderPosition(e, width, height);
+                Rectangle r = new Rectangle((int)p.X, (int)p.Y, width, height);
                 if (r.Contains(newSel))
                 {
                     sel = e.id;
@@ -98,23 +99,25 @@ namespace GameLogic.View
 
             IEnumerable<Entity> entities = state.GetAllEntities();
 
-            batch.Begin();
+            batch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
             Texture2D bg = db.Get("bg");
-            batch.Draw(bg, new Rectangle(0, 0, bg.Width, bg.Height), Color.White);
+            //batch.Draw(bg, new Rectangle(0, 0, bg.Width, bg.Height), Color.White);
+            batch.Draw(bg, Vector2.Zero, new Rectangle(0, 0, bg.Width, bg.Height), Color.White, 0.0f,
+                Vector2.Zero, 1.0f, SpriteEffects.None, .00000001f);
             foreach (Entity e in entities)
             {
                 AnimatedTexture2D anim = db.GetAnimation(e.texName);
                 if (anim == null)
                 {
                     Texture2D tex = db.Get(e.texName);
-                    batch.Draw(tex, GetRenderBox(e, tex.Width, tex.Height), Color.White);
+                    batch.Draw(tex, GetRenderPosition(e, tex.Width, tex.Height), new Rectangle(0, 0, tex.Width, tex.Height), Color.White, 0.0f,
+                        Vector2.Zero, 1.0f, SpriteEffects.None, (float) (e.x + e.y + .0001f) / 1200);
                 }
                 else
                 {
                     Texture2D tex = anim.GetSheet();
-                    Rectangle p = GetRenderBox(e, anim.GetWidth(), anim.GetHeight());
-                    batch.Draw(tex, new Vector2(p.X, p.Y), anim.GetWindow(e.index), Color.White, 0.0f, 
-                        Vector2.Zero, 1.0f, SpriteEffects.None, 0.0f);
+                    batch.Draw(tex, GetRenderPosition(e, anim.GetWidth(), anim.GetHeight()), anim.GetWindow(e.index), Color.White, 0.0f,
+                        Vector2.Zero, 1.0f, SpriteEffects.None, (float) (e.x + e.y + .0001f) / 1200);
                 }
             }
 

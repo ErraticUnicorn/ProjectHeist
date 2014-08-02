@@ -56,13 +56,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Image\blue.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>blue</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
     <Compile Include="Image\red.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>red</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -114,6 +112,20 @@
       <Name>test</Name>
       <Importer>AnimationImporter</Importer>
       <Processor>AnimationProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Image\testSelect.anim">
+      <Name>testSelect</Name>
+      <Importer>AnimationImporter</Importer>
+      <Processor>AnimationProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Image\testAnimSelect.png">
+      <Name>testAnimSelect</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

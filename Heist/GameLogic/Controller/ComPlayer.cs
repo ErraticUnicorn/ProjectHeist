@@ -1,6 +1,8 @@
 ﻿
+using GameLogic.Controller.FSM;
 using GameLogic.Model;
 using GameLogic.Model.Abstract;
+using GameLogic.Model.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,31 +21,15 @@ namespace GameLogic.Controller
             test = new FiniteStateMachine(t, 2);
         }
 
-        public override void Process(IEnumerable<Control> entities)
+        public override void Process(IEnumerable<Control> entities, State world)
         {
             foreach (Control e in entities)
             {
-                int input = 0;
-                Random rand = new Random();
-                        if (rand.NextDouble() < .05)
-                        {
-                            input = 1;
-                        }
+                Behavior<TestEntity> b = BehaviorFactory.GetTestBehavior(e.state);
+                b.React((TestEntity)e, world);
 
+                int input = b.GetInputFromEnvironment((TestEntity)e, world);
                 e.state = test.GetNextState(e.state, input);
-                Console.WriteLine(e.state);
-
-                switch(e.state)
-                {
-                    case (0):
-                        break;
-                    case (1):
-                        if (e is Dynamic)
-                        {
-                            ((Dynamic)e).AppendWayPoint(new WayPoint(rand.NextDouble() * 466.476, rand.NextDouble() * 466.476, ((Dynamic)e).maxSpeed));
-                        }
-                        break;
-                }
             }
         }
     }

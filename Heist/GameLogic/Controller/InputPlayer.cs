@@ -28,7 +28,7 @@ namespace GameLogic.Controller
             waypoint = false;
         }
 
-        private void applyAction(IEnumerable<Control> entities)
+        private void ApplyAction(IEnumerable<Control> entities)
         {
             foreach (Control e in entities)
             {
@@ -51,7 +51,7 @@ namespace GameLogic.Controller
 
         }
 
-        public override void Process(IEnumerable<Control> entities)
+        public override void Process(IEnumerable<Control> entities, State world)
         {
             if (sel != oldSel)
             {
@@ -59,11 +59,11 @@ namespace GameLogic.Controller
                 {
                     if (e.id == sel)
                     {
-                        e.texName = "blue";
+                        e.texName = "animSelect";
                     }
                     else if (e.id == oldSel)
                     {
-                        e.texName = "red";
+                        e.texName = "anim";
                     }
                 }
                 oldSel = sel;
@@ -71,7 +71,7 @@ namespace GameLogic.Controller
 
             if (p != new Point(-1, -1))
             {
-                applyAction(entities);
+                ApplyAction(entities);
                 p = new Point(-1, -1);
             }
         }

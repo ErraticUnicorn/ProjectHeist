@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GameLogic.Controller
+namespace GameLogic.Controller.FSM
 {
     class FiniteStateMachine
     {

@@ -26,8 +26,8 @@ namespace GameLogic.Controller
 
         public void Update(GameTime gameTime, State state)
         {
-            human.Process(state.GetEntitiesFor(0));
-            com.Process(state.GetEntitiesFor(1));
+            human.Process(state.GetEntitiesFor(0), state);
+            com.Process(state.GetEntitiesFor(1), state);
             p.Process(state.GetDynamicEntities());
         }
 

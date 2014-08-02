@@ -17,6 +17,6 @@ namespace GameLogic.Controller
             id = id_;
         }
 
-        public abstract void Process(IEnumerable<Control> entities);
+        public abstract void Process(IEnumerable<Control> entities, State world);
     }
 }
