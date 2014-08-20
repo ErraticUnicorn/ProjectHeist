@@ -28,7 +28,7 @@ namespace GameLogic.Controller
         {
             human.Process(state.GetEntitiesFor(0), state);
             com.Process(state.GetEntitiesFor(1), state);
-            p.Process(state.GetDynamicEntities());
+            p.Process(state.GetDynamicEntities(), gameTime);
         }
 
         public void OnEvent(Event e)

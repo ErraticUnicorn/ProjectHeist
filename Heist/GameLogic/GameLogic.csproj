@@ -57,6 +57,7 @@
     <Compile Include="Model\Abstract\Control.cs" />
     <Compile Include="Model\Abstract\Dynamic.cs" />
     <Compile Include="Model\Abstract\Entity.cs" />
+    <Compile Include="Model\IdManager.cs" />
     <Compile Include="Model\Static\EntityFactory.cs" />
     <Compile Include="Model\State.cs" />
     <Compile Include="Model\Static\StaticData.cs" />

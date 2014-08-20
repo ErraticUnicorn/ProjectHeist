@@ -1,6 +1,7 @@
 ﻿
 using GameLogic.Model;
 using GameLogic.Model.Abstract;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +35,7 @@ namespace GameLogic.Controller
             }
         }
 
-        public void Process(IEnumerable<Dynamic> entities)
+        public void Process(IEnumerable<Dynamic> entities, GameTime gameTime)
         {
             //DynamicCollisions(entities);
 
@@ -43,10 +44,28 @@ namespace GameLogic.Controller
                 WayPoint w = e.GetNextPoint();
                 if (w != null)
                 {
-                    e.x = (e.x * (1 - w.speed) + w.targetX * w.speed);
-                    e.y = (e.y * (1 - w.speed) + w.targetY * w.speed);
+                    double distSquared = (w.targetX - e.x) * (w.targetX - e.x) + (w.targetY - e.y) * (w.targetY - e.y);
 
-                    if (Math.Abs(e.x - w.targetX) < EPSILON && Math.Abs(e.y - w.targetY) < EPSILON)
+                    if(e.xDir == 0 && e.yDir == 0)
+                    {
+                        double dist = Math.Sqrt((w.targetX - e.x) * (w.targetX - e.x) + (w.targetY - e.y) * (w.targetY - e.y));
+                        e.xDir = (w.targetX - e.x) / dist;
+                        e.yDir = (w.targetY - e.y) / dist;
+                    }
+
+                    if (distSquared * e.accel < e.speed)
+                    {
+                        e.speed = e.speed * (1 - e.accel);
+                    }
+                    else
+                    {
+                        e.speed = e.speed * (1 - e.accel) + w.speed * e.accel;
+                    }
+
+                    e.x += e.speed * e.xDir * gameTime.ElapsedGameTime.TotalSeconds;
+                    e.y += e.speed * e.yDir * gameTime.ElapsedGameTime.TotalSeconds;
+
+                    if (distSquared < EPSILON * EPSILON)
                     {
                         e.RemoveNextPoint();
                     }

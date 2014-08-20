@@ -10,7 +10,8 @@ namespace GameLogic.Model
 {
     class State
     {
-        private int maxId;
+        private IdManager idManager;
+
         private StaticData db;
 
         private List<Control> player;
@@ -20,7 +21,7 @@ namespace GameLogic.Model
         {
             player = new List<Control>();
             com = new List<Control>();
-            maxId = 0;
+            idManager = new IdManager();
 
             db = sdb;
 
@@ -36,8 +37,7 @@ namespace GameLogic.Model
         public int AddEntity<T>(int controller, String type, double x, double y)
         {
             TestEntity e = db.GetTestEntityType(type).NewEntity();
-            e.id = maxId;
-            maxId++;
+            e.id = idManager.New();
 
             e.x = x;
             e.y = y;
@@ -64,6 +64,8 @@ namespace GameLogic.Model
             {
                 com.RemoveAt(id);
             }
+
+            idManager.Free(id);
         }
 
         public IEnumerable<Entity> GetAllEntities()

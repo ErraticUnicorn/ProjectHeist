@@ -9,8 +9,7 @@ namespace GameLogic.Model.Abstract
     {
         public int state;
 
-        public Control(string texName, int id, double x, double y)
-            : base(texName, id, x, y)
+        public Control() : base()
         {
 
         }

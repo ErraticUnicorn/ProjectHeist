@@ -19,22 +19,15 @@ namespace GameLogic.Model.Abstract
 
     public abstract class Dynamic : Control
     {
-        public double maxSpeed;
+        public double maxSpeed, speed, accel, xDir, yDir;
 
         private Queue<WayPoint> wayPoints;
 
-        public Dynamic(string texName, int id, double x, double y, double maxSpeed_)
-            : base(texName, id, x, y)
-        {
-            wayPoints = new Queue<WayPoint>();
-            maxSpeed = maxSpeed_;
-        }
-
-        public Dynamic(string texName, int id, double x, double y)
-            : base(texName, id, x, y)
+        public Dynamic() : base()
         {
             wayPoints = new Queue<WayPoint>();
             maxSpeed = 0;
+            accel = 0;
         }
 
         public WayPoint GetNextPoint()
@@ -48,6 +41,8 @@ namespace GameLogic.Model.Abstract
 
         public WayPoint RemoveNextPoint()
         {
+            xDir = 0;
+            yDir = 0;
             return wayPoints.Dequeue();
         }
 
@@ -58,6 +53,8 @@ namespace GameLogic.Model.Abstract
 
         public void ClearWayPoints()
         {
+            xDir = 0;
+            yDir = 0;
             wayPoints.Clear();
         }
 

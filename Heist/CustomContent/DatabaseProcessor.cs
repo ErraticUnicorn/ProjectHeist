@@ -45,10 +45,11 @@ namespace CustomContent
             Dictionary<string, T> res = new Dictionary<string, T>();
             Type type = typeof(T);
 
-            String[] fields = new String[] {"name","texName","accel"};
-            foreach (PropertyInfo p in type.GetProperties())
+            //String[] fields = new String[type.GetProperties().Count()];
+            String[] fields = new String[] { "name", "texName", "maxSpeed", "accel" };
+            for (int i = 0; i < type.GetProperties().Count(); i++)
             {
-                //fields += "`" + p.Name + "`,";
+                //fields[i] = type.GetProperties()[i].Name;
             }
 
             //fields = fields.Remove(fields.Length - 1);
@@ -60,7 +61,10 @@ namespace CustomContent
 
                 fieldStr += fields[i];
             }
-            DataTable tbl = Query(conn, "SELECT " + fieldStr + " FROM " + tblName);
+
+            String query = "SELECT " + fieldStr + " FROM " + tblName;
+            Console.WriteLine(query);
+            DataTable tbl = Query(conn, query);
 
             foreach (DataRow row in tbl.Rows)
             {
@@ -81,7 +85,6 @@ namespace CustomContent
             input.Open();
             var test = ReadTable<TestEntityFactory>(input, "TestEntity", 0);
             input.Close();
-            test.Add("rer", new TestEntityFactory("b","b",new Decimal(.1)));
 
             return new StaticData(test);
         }

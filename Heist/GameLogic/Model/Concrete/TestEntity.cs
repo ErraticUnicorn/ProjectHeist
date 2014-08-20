@@ -9,9 +9,15 @@ namespace GameLogic.Model.Concrete
 {
     public class TestEntity : Dynamic
     {
-        public TestEntity(string texName, int id, double x, double y, double accel)
-            : base(texName, id, x, y, accel)
+        public TestEntity(string texName, int id, double x, double y, double maxSpeed, double accel)
+            : base()
         {
+            this.texName = texName;
+            this.id = id;
+            this.x = x;
+            this.y = y;
+            this.maxSpeed = maxSpeed;
+            this.accel = accel;
         }
 
         public override Rectangle GetHitBox()

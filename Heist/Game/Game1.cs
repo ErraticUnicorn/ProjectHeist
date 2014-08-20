@@ -29,6 +29,8 @@ namespace Heist
         public Game1()
             : base()
         {
+            widthScreen = 800;
+            heightScreen = 400;
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             this.IsMouseVisible = true;
@@ -44,12 +46,9 @@ namespace Heist
         {
             // TODO: Add your initialization logic here
             graphics.IsFullScreen = false;
-            graphics.PreferredBackBufferWidth = 800;
-            graphics.PreferredBackBufferHeight = 400;
+            graphics.PreferredBackBufferWidth = widthScreen;
+            graphics.PreferredBackBufferHeight = heightScreen;
             graphics.ApplyChanges();
-
-            widthScreen = this.GraphicsDevice.Viewport.Width;
-            heightScreen = this.GraphicsDevice.Viewport.Height;
 
             Change<MainMenuScreen>();
 

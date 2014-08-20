@@ -16,12 +16,12 @@ namespace GameLogic.Model.Abstract
         public double x, y;
         public int collideX, collideY;
 
-        public Entity(string texName_, int id_, double x_, double y_)
+        public Entity()
         {
-            texName = texName_;
-            id = id_;
-            x = x_;
-            y = y_;
+            texName = "null";
+            id = -1;
+            x = -1;
+            y = -1;
             collideX = -1;
             collideY = -1;
         }
