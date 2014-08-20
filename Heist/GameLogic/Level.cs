@@ -32,7 +32,8 @@ namespace GameLogic
         public const int CameraDownEnd = 16384;
         public const int CameraLeftEnd = 32768;
 
-        public const int View = Select | Zoom | Pan | CameraUp | CameraRight | CameraDown | CameraLeft | CameraUpEnd | CameraRightEnd | CameraDownEnd | CameraLeftEnd;
+        public const int View = Zoom | Pan | CameraUp | CameraRight | CameraDown | CameraLeft | CameraUpEnd | CameraRightEnd | CameraDownEnd | CameraLeftEnd;
+        public const int UI = Select;
         public const int Game = Action | Pause | Waypoint | WaypointOff;
         public const int System = End;
     }
@@ -40,18 +41,18 @@ namespace GameLogic
     public class Level : EventListener
     {
         private State state;
-        private Renderer rend;
+        private GUI gui;
         private Operator op;
 
         private EventDispatcher disp;
 
         public Level(EventListener sysCall, StaticData sdb, ViewDB vdb, Viewport view)
         {
+            disp = new EventDispatcher();
+
             state = new State(sdb);
             op = new Operator();
-            rend = new Renderer(vdb, view, op.OnSelect);
-
-            disp = new EventDispatcher();
+            gui = new GUI(vdb, view, op.OnSelect, disp);
 
             disp.MapInput(InputType.MouseLeft_Up, EventType.Select);
             disp.MapInput(InputType.MouseRight_Up, EventType.Action);
@@ -72,7 +73,6 @@ namespace GameLogic
 
             disp.MapInput(InputType.Escape_Up, EventType.End);
 
-            disp.AddListener(rend, EventType.View);
             disp.AddListener(this, EventType.Game);
             disp.AddListener(sysCall, EventType.System);
 
@@ -81,18 +81,18 @@ namespace GameLogic
         public void Update(GameTime gameTime)
         {
             disp.Process();
-            rend.Update(gameTime, state);
+            gui.Update(gameTime, state);
             op.Update(gameTime, state);
         }
 
         public void Draw(GameTime gameTime, SpriteBatch batch)
         {
-            rend.Draw(gameTime, batch, state);
+            gui.Draw(gameTime, batch, state);
         }
 
         public void OnEvent(Event e)
         {
-            Event newE = new Event(e.Type, rend.ScreenToWorld(e.Location), e.Scroll);
+            Event newE = new Event(e.Type, gui.ScreenToWorld(e.Location), e.Scroll);
             op.OnEvent(newE);
         }
     }

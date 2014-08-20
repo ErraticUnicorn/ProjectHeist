@@ -49,5 +49,11 @@ namespace GameLogic.View
 
             return new Point((int)world.X, (int)world.Y);
         }
+
+        public Vector2 GetRenderPosition(Point p, Vector2 dim)
+        {
+            Point newP = WorldToScreen(p);
+            return new Vector2(newP.X - dim.X / 2, newP.Y - dim.Y);
+        }
     }
 }
